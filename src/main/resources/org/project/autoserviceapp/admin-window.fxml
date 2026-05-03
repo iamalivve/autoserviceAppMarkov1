@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.AdminsWindowController">
+    <children>
+        <AnchorPane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #f7931e;">
+            <children>
+                <VBox layoutY="65.0" prefHeight="245.0" prefWidth="140.0" spacing="30.0">
+                    <children>
+                        <Button fx:id="ordersHistoryButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: orange;" text="Архив заказов" textFill="WHITE" />
+                        <Button fx:id="activeOrdersButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: orange;" text="Активные заказы" textFill="WHITE" />
+                        <Button fx:id="warehouseButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: orange;" text="Склад запчастей" textFill="WHITE" />
+                        <Button fx:id="employeesButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: orange;" text="Сотрудники" textFill="WHITE" />
+                        <Button fx:id="clientsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: orange;" text="Клиенты" textFill="WHITE" />
+                    </children>
+                    <padding>
+                        <Insets left="15.0" />
+                    </padding>
+                </VBox>
+                <Button fx:id="exitbutton" layoutX="45.0" layoutY="374.0" onAction="#actionExitButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="51.0" style="-fx-background-color: #f7931e;" text="Выход" textFill="WHITE" />
+                <Text fill="WHITE" layoutX="37.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AVTO67" wrappingWidth="66.13671875">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <TextField fx:id="nameField" editable="false" layoutX="505.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" />
+        <Button fx:id="backButton" layoutX="155.0" layoutY="14.0" onAction="#actionBackButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="22.0" text="◀" />
+        <Button fx:id="forwardButton" layoutX="177.0" layoutY="14.0" onAction="#actionForwardButton" prefHeight="6.0" prefWidth="22.0" text="▶" />
+        <TextField layoutX="155.0" layoutY="58.0" prefHeight="301.0" prefWidth="429.0" />
+        <Button fx:id="secondWindowButton" layoutX="415.0" layoutY="366.0" onAction="#actionAdminSecondWindow" prefHeight="25.0" prefWidth="166.0" text="Открыть в отдельном окне" />
+    </children>
+</AnchorPane>
