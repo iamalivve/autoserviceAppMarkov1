@@ -63,7 +63,7 @@ public class AdminsWindowController{
 
     public void openLoginController() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("autoservice_login.fxml"));
+           Parent root = FXMLLoader.load(getClass().getResource("autoservice_login.fxml"));
             Stage stage = new Stage();
             stage.setTitle("AVTO67");
             stage.setScene(new Scene(root, 550, 400));

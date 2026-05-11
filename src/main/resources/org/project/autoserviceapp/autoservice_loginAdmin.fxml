@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.LoginAdminController">
+    <left>
+        <AnchorPane prefHeight="400.0" prefWidth="330.0" style="-fx-background-color: #D3D3D3;" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="141.0" layoutY="106.0" text="Логин" AnchorPane.bottomAnchor="268.0" AnchorPane.topAnchor="106.0">
+                    <font>
+                        <Font name="Times New Roman" size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="usernameField" layoutX="34.0" layoutY="139.0" prefHeight="40.0" prefWidth="270.0" promptText="Логин" AnchorPane.bottomAnchor="221.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="139.0">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font></TextField>
+                <Label layoutX="137.0" layoutY="200.0" text="Пароль" AnchorPane.bottomAnchor="180.0">
+                    <font>
+                        <Font name="Times New Roman" size="18.0" />
+                    </font>
+                </Label>
+                <PasswordField fx:id="passwordField" layoutX="34.0" layoutY="229.0" prefHeight="40.0" prefWidth="270.0" promptText="Пароль" AnchorPane.bottomAnchor="131.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font></PasswordField>
+                <Button fx:id="adminLoginButton" layoutX="52.0" layoutY="304.0" mnemonicParsing="false" onAction="#adminButtonLogin" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #f7931e;" text="Войти" textFill="WHITE" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0">
+                    <font>
+                        <Font name="Times New Roman" size="18.0" />
+                    </font>
+                </Button>
+                <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="12.0" layoutY="350.0" prefHeight="19.0" prefWidth="307.0" textFill="#e42d2d">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="33.0" layoutY="30.0" text="Вход для администратора">
+                    <font>
+                        <Font name="Times New Roman" size="24.0" />
+                    </font>
+                </Label>
+            <Button fx:id="BackAdminButton" layoutX="-2.0" layoutY="-5.0" mnemonicParsing="false" onAction="#actionBackAdmin" prefHeight="39.0" prefWidth="18.0" style="-fx-background-color: none;" text="◀" textFill="#f7931e">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane prefHeight="400.0" prefWidth="218.0" BorderPane.alignment="CENTER">
+         <children>
+                <ImageView fx:id="brandingImageView" fitHeight="400.0" fitWidth="220.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../../../images/loginMenu.png" />
+                    </image></ImageView>
+         </children></AnchorPane>
+    </right>
+</BorderPane>

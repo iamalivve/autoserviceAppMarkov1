@@ -1,66 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.LoginController">
-   <left>
-      <AnchorPane prefHeight="400.0" prefWidth="220.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fx:id="brandingImageView" fitHeight="400.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../images/loginMenu.png" />
-               </image></ImageView>
-         </children>
-      </AnchorPane>
-   </left>
-   <right>
-      <AnchorPane prefHeight="400.0" prefWidth="330.0" style="-fx-background-color: #D3D3D3;" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="51.0" layoutY="124.0" text="Логин" AnchorPane.bottomAnchor="250.0" AnchorPane.topAnchor="124.0">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <TextField fx:id="usernameField" layoutX="107.0" layoutY="124.0" prefHeight="26.0" prefWidth="173.0" promptText="Логин" AnchorPane.bottomAnchor="250.0" AnchorPane.topAnchor="124.0" />
-            <Label layoutX="51.0" layoutY="170.0" text="Пароль" AnchorPane.bottomAnchor="211.0">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <PasswordField fx:id="passwordField" layoutX="107.0" layoutY="166.0" prefHeight="26.0" prefWidth="173.0" promptText="Пароль" AnchorPane.bottomAnchor="208.0" />
-            <Button fx:id="userLoginButton" layoutX="45.0" layoutY="224.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="32.0" prefWidth="240.0" style="-fx-background-color: #f7931e;" text="Войти" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="adminLoginButton" layoutX="45.0" layoutY="327.0" mnemonicParsing="false" onAction="#adminButtonLogin" prefHeight="32.0" prefWidth="240.0" style="-fx-background-color: #f7931e;" text="Вход для администратора" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Button>
-            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="12.0" layoutY="367.0" prefHeight="19.0" prefWidth="307.0" textFill="#e42d2d">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Button fx:id="userRegisterButton" layoutX="46.0" layoutY="275.0" mnemonicParsing="false" onAction="#createAccountForm" prefHeight="32.0" prefWidth="240.0" style="-fx-background-color: #f7931e;" text="Зарегистрироваться" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Button>
-            <Label layoutX="140.0" layoutY="44.0" text="Вход">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children></AnchorPane>
-   </right>
-</BorderPane>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D3D3D3;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.LoginController">
+   <children>
+      <Button fx:id="adminButton" layoutX="82.0" layoutY="316.0" mnemonicParsing="false" onAction="#actionAdminLogin" prefHeight="35.0" prefWidth="182.0" style="-fx-background-color: #f7931e;" text="Администратор" textFill="WHITE" AnchorPane.leftAnchor="80.0">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="clientButton" layoutX="345.0" layoutY="316.0" mnemonicParsing="false" onAction="#actionClientLogin" prefHeight="35.0" prefWidth="182.0" style="-fx-background-color: #f7931e;" text="Клиент" textFill="WHITE" AnchorPane.rightAnchor="80.0">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
+         </font>
+      </Button>
+      <Text fill="#f7931e" layoutX="34.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Добро пожаловать в автосервис AVTO67">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fill="#f7931e" layoutX="201.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите способ входа..." wrappingWidth="197.0">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="ImageViewLogin" fitHeight="133.0" fitWidth="142.0" layoutX="231.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../images/logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

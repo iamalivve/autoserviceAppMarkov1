@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.LoginClientController">
+    <left>
+        <AnchorPane prefHeight="400.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fx:id="brandingImageView" fitHeight="400.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../../../images/loginMenu.png" />
+                    </image></ImageView>
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane prefHeight="400.0" prefWidth="330.0" style="-fx-background-color: #D3D3D3;" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="141.0" layoutY="106.0" text="Логин" AnchorPane.bottomAnchor="268.0" AnchorPane.leftAnchor="141.0" AnchorPane.topAnchor="106.0">
+                    <font>
+                        <Font name="Times New Roman" size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="usernameField" layoutX="39.0" layoutY="126.0" prefHeight="40.0" prefWidth="270.0" promptText="Логин" AnchorPane.bottomAnchor="222.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="138.0">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font></TextField>
+                <Label layoutX="137.0" layoutY="200.0" text="Пароль" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="137.0">
+                    <font>
+                        <Font name="Times New Roman" size="18.0" />
+                    </font>
+                </Label>
+                <PasswordField fx:id="passwordField" layoutX="26.0" layoutY="223.0" prefHeight="40.0" prefWidth="270.0" promptText="Пароль" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font></PasswordField>
+                <Button fx:id="userLoginButton" layoutX="25.0" layoutY="301.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="38.0" prefWidth="73.0" style="-fx-background-color: #f7931e;" text="Войти" textFill="WHITE" AnchorPane.leftAnchor="25.0">
+                    <font>
+                        <Font name="Times New Roman" size="18.0" />
+                    </font>
+                </Button>
+                <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="12.0" layoutY="365.0" prefHeight="19.0" prefWidth="307.0" textFill="#e42d2d">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Button fx:id="userRegisterButton" layoutX="121.0" layoutY="301.0" mnemonicParsing="false" onAction="#createAccountForm" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: #f7931e;" text="Зарегистрироваться" textFill="WHITE" AnchorPane.rightAnchor="25.0">
+                    <font>
+                        <Font name="Times New Roman" size="18.0" />
+                    </font>
+                </Button>
+                <Label layoutX="72.0" layoutY="29.0" prefHeight="28.0" prefWidth="186.0" text="Вход для клиента" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.0">
+                    <font>
+                        <Font name="Times New Roman" size="24.0" />
+                    </font>
+                </Label>
+            <Button layoutX="108.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Забыли пароль?" textFill="#bc6400">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="backClientButton" layoutX="308.0" layoutY="-5.0" mnemonicParsing="false" onAction="#actionBackClient" style="-fx-background-color: none;" text="▶" textFill="#f7931e">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            </children></AnchorPane>
+    </right>
+</BorderPane>

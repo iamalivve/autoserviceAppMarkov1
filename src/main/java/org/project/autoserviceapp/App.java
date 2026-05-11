@@ -11,7 +11,7 @@ public class App extends Application {
     public void start (Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("autoservice_login.fxml"));
         stage.setTitle("AVTO67");
-        stage.setScene(new Scene(root, 550, 400));
+        stage.setScene(new Scene(root, 600, 400));
         stage.show();
     }
 }
