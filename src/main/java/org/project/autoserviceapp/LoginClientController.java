@@ -13,6 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +46,11 @@ public class LoginClientController implements Initializable {
     }
 
     public void loginButtonOnAction(ActionEvent event){
-        ((Stage) brandingImageView.getScene().getWindow()).close();
+        if (usernameField.getText().isBlank() == false && passwordField.getText().isBlank() == false){
+            validateLogin();
+        }else {
+            loginMessageLabel.setText("Пожалуйста введите логин и пароль");
+        }
     }
 
     public void actionBackClient(ActionEvent event) {
@@ -51,8 +59,29 @@ public class LoginClientController implements Initializable {
     }
 
     public void validateLogin(){
-        ((Stage) usernameField.getScene().getWindow()).close();
-        openClientWindow();
+        //((Stage) usernameField.getScene().getWindow()).close();
+        //openClientWindow();
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String verifyLogin = "SELECT count(1) FROM Client WHERE client_username = '" + usernameField.getText() + "' AND client_password = '" + passwordField.getText() + "'";
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+
+            while (queryResult.next()){
+                if (queryResult.getInt(1) == 1){
+                    openClientWindow();
+                }else {
+                    loginMessageLabel.setText("Неверный логин или пароль");
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
     public void createAccountForm(){

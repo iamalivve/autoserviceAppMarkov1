@@ -6,11 +6,12 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-    public static void main(String[] args) {
+    public Connection databaseLink;
 
+    public Connection getConnection(){
         try{
             Class.forName("org.sqlite.JDBC");
-            Connection con = DriverManager.getConnection("jdbc:sqlite:autoserviceApp.db");
+            databaseLink = DriverManager.getConnection("jdbc:sqlite:autoserviceApp.db");
 
             DriverManager.registerDriver(new org.sqlite.JDBC());
         }catch (ClassNotFoundException e){
@@ -18,5 +19,6 @@ public class DatabaseConnection {
         }catch (SQLException e){
             e.printStackTrace();
         }
+        return databaseLink;
     }
 }
