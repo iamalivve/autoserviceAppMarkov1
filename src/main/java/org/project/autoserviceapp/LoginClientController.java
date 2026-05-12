@@ -31,22 +31,18 @@ public class LoginClientController implements Initializable {
     @FXML
     private PasswordField passwordField;
 
-    private Map<String, String> userDatabase = new HashMap<>();
+    //private Map<String, String> userDatabase = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        userDatabase.put("Марков", "12345");//данные пользователя
+        //userDatabase.put("Марков", "12345");//данные пользователя
         File brandingFile = new File("images/loginMenu.png");
         Image brandingImage = new Image(brandingFile.toURI().toString());
         brandingImageView.setImage(brandingImage);
     }
 
     public void loginButtonOnAction(ActionEvent event){
-        if (userDatabase.containsKey(usernameField.getText()) && userDatabase.get(usernameField.getText()).equals(passwordField.getText())){
-            validateLogin();
-        }else {
-            loginMessageLabel.setText("Пожалуйста, введите корректные логин и пароль");
-        }
+        ((Stage) brandingImageView.getScene().getWindow()).close();
     }
 
     public void actionBackClient(ActionEvent event) {
