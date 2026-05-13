@@ -58,6 +58,7 @@ public class LoginClientController implements Initializable {
         openLoginWindow();
     }
 
+
     public void validateLogin(){
 
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -83,6 +84,8 @@ public class LoginClientController implements Initializable {
     }
 
     public void createAccountForm(){
+
+        ((Stage) usernameField.getScene().getWindow()).close();
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("autoservice_register.fxml"));

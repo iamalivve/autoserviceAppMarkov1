@@ -80,6 +80,11 @@
                <font>
                   <Font size="15.0" />
                </font></TextField>
+            <Button fx:id="BackRegisterButton" layoutX="-2.0" layoutY="-5.0" mnemonicParsing="false" onAction="#actionBackRegister" prefHeight="39.0" prefWidth="18.0" style="-fx-background-color: none;" text="◀" textFill="#f7931e" AnchorPane.bottomAnchor="366.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="299.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </left>
