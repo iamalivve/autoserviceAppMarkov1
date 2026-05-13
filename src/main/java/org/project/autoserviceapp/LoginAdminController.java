@@ -13,6 +13,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,21 +34,21 @@ public class LoginAdminController implements Initializable {
     @FXML
     private PasswordField passwordField;
 
-    private Map<String, String> adminDatabase = new HashMap<>();
+    //private Map<String, String> adminDatabase = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        adminDatabase.put("Бережной","11111");//данные админа
+        //adminDatabase.put("Бережной","11111");
         File brandingFile = new File("images/loginMenu.png");
         Image brandingImage = new Image(brandingFile.toURI().toString());
         brandingImageView.setImage(brandingImage);
     }
 
     public void adminButtonLogin(ActionEvent event){
-        if (adminDatabase.containsKey(usernameField.getText()) && adminDatabase.get(usernameField.getText()).equals(passwordField.getText())){
+        if (usernameField.getText().isBlank() == false && passwordField.getText().isBlank() == false){
             validateAdminLogin();
         }else {
-            loginMessageLabel.setText("Пожалуйста, введите корректные логин и пароль");
+            loginMessageLabel.setText("Пожалуйста введите логин и пароль");
         }
     }
 
@@ -55,8 +58,27 @@ public class LoginAdminController implements Initializable {
     }
 
     public void validateAdminLogin(){
-        ((Stage) usernameField.getScene().getWindow()).close();
-        openAdminWindow();
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String verifyLogin = "SELECT count(1) FROM Admin WHERE admin_username = '" + usernameField.getText() + "' AND admin_password = '" + passwordField.getText() + "'";
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+
+            while (queryResult.next()){
+                if (queryResult.getInt(1) == 1){
+                    ((Stage) usernameField.getScene().getWindow()).close();
+                    openAdminWindow();
+                }else {
+                    loginMessageLabel.setText("Неверный логин или пароль");
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
     private void openAdminWindow() {
