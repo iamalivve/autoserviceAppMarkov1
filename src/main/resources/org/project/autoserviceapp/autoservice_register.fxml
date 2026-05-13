@@ -25,46 +25,61 @@
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="330.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="usernameField" layoutX="63.0" layoutY="78.0" prefHeight="25.0" prefWidth="248.0" promptText="Логин" AnchorPane.bottomAnchor="297.0" AnchorPane.leftAnchor="50.0" />
-            <Label layoutX="63.0" layoutY="60.0" text="Логин" AnchorPane.bottomAnchor="321.0" AnchorPane.leftAnchor="51.0">
+            <TextField fx:id="usernameField" layoutX="50.0" layoutY="72.0" prefHeight="25.0" prefWidth="248.0" promptText="Логин" AnchorPane.bottomAnchor="297.0" AnchorPane.leftAnchor="50.0">
                <font>
-                  <Font size="13.0" />
+                  <Font size="15.0" />
+               </font></TextField>
+            <Label layoutX="51.0" layoutY="47.0" text="Логин" AnchorPane.bottomAnchor="326.0" AnchorPane.leftAnchor="51.0">
+               <font>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="52.0" layoutY="110.0" text="Пароль" AnchorPane.bottomAnchor="271.0" AnchorPane.leftAnchor="52.0">
+            <Label layoutX="52.0" layoutY="102.0" text="Пароль" AnchorPane.bottomAnchor="271.0" AnchorPane.leftAnchor="52.0">
                <font>
-                  <Font size="13.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
-            <PasswordField fx:id="passwordField" layoutX="51.0" layoutY="128.0" prefWidth="248.0" promptText="Пароль" AnchorPane.bottomAnchor="247.0" AnchorPane.leftAnchor="51.0" />
-            <Label layoutX="52.0" layoutY="162.0" text="Подтвердите пароль" AnchorPane.bottomAnchor="221.0" AnchorPane.leftAnchor="52.0">
+            <PasswordField fx:id="passwordField" layoutX="51.0" layoutY="127.0" prefWidth="248.0" promptText="Пароль" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="51.0">
                <font>
-                  <Font size="13.0" />
+                  <Font size="15.0" />
+               </font></PasswordField>
+            <Label layoutX="52.0" layoutY="157.0" text="Подтвердите пароль" AnchorPane.bottomAnchor="216.0" AnchorPane.leftAnchor="52.0">
+               <font>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <PasswordField fx:id="confirmPasswordField" layoutX="51.0" layoutY="187.0" prefWidth="248.0" promptText="Пароль" AnchorPane.bottomAnchor="197.0" AnchorPane.leftAnchor="51.0" />
-            <Label layoutX="52.0" layoutY="212.0" text="Номер" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="52.0">
+            <PasswordField fx:id="confirmPasswordField" layoutX="51.0" layoutY="182.0" prefWidth="248.0" promptText="Пароль" AnchorPane.bottomAnchor="187.0" AnchorPane.leftAnchor="51.0">
                <font>
-                  <Font size="13.0" />
+                  <Font size="15.0" />
+               </font></PasswordField>
+            <Label layoutX="52.0" layoutY="212.0" text="Номер" AnchorPane.bottomAnchor="161.0" AnchorPane.leftAnchor="52.0">
+               <font>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="phoneNumberField" layoutX="51.0" layoutY="230.0" prefWidth="248.0" promptText="+7 (000) 000-00-00" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="51.0" />
-            <Button fx:id="registerrButton" layoutX="56.0" layoutY="337.0" mnemonicParsing="false" prefWidth="248.0" style="-fx-background-color: #f7931e;" text="Зарегистрироваться" textFill="WHITE" AnchorPane.leftAnchor="50.0">
+            <TextField fx:id="phoneNumberField" layoutX="51.0" layoutY="237.0" prefWidth="248.0" promptText="+7 (000) 000-00-00" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="51.0">
                <font>
-                  <Font size="13.0" />
+                  <Font size="15.0" />
+               </font></TextField>
+            <Button fx:id="registerrButton" layoutX="56.0" layoutY="337.0" mnemonicParsing="false" prefWidth="248.0" style="-fx-background-color: #f7931e;" text="Зарегистрироваться" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
                </font>
             </Button>
-            <Label layoutX="118.0" layoutY="20.0" text="Регистрация">
+            <Label layoutX="112.0" layoutY="22.0" text="Регистрация" AnchorPane.bottomAnchor="350.0" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="10.0">
                <font>
-                  <Font size="20.0" />
+                  <Font name="Times New Roman" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="53.0" layoutY="264.0" text="Почта">
+            <Label layoutX="53.0" layoutY="267.0" text="Почта" AnchorPane.bottomAnchor="106.0">
                <font>
-                  <Font size="13.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="emailField" layoutX="52.0" layoutY="282.0" prefWidth="248.0" promptText="example@mail.ru" />
+            <TextField fx:id="emailField" layoutX="52.0" layoutY="292.0" prefWidth="248.0" promptText="example@mail.ru" AnchorPane.bottomAnchor="77.0">
+               <font>
+                  <Font size="15.0" />
+               </font></TextField>
          </children>
       </AnchorPane>
    </left>

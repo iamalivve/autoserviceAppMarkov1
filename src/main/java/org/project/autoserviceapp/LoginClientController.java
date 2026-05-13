@@ -59,8 +59,6 @@ public class LoginClientController implements Initializable {
     }
 
     public void validateLogin(){
-        //((Stage) usernameField.getScene().getWindow()).close();
-        //openClientWindow();
 
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
