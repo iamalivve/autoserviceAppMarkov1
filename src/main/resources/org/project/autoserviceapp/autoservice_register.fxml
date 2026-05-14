@@ -61,7 +61,7 @@
                <font>
                   <Font size="15.0" />
                </font></TextField>
-            <Button fx:id="registerrButton" layoutX="56.0" layoutY="337.0" mnemonicParsing="false" prefWidth="248.0" style="-fx-background-color: #f7931e;" text="Зарегистрироваться" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0">
+            <Button fx:id="registerButton" layoutX="56.0" layoutY="337.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefWidth="248.0" style="-fx-background-color: #f7931e;" text="Зарегистрироваться" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
@@ -85,6 +85,11 @@
                   <Font size="18.0" />
                </font>
             </Button>
+            <Label fx:id="confirmPasswordLabel" alignment="CENTER" layoutX="76.0" layoutY="335.0" prefHeight="19.0" prefWidth="196.0" textFill="#e42d2d" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="58.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </left>

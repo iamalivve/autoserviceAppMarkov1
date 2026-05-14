@@ -29,6 +29,21 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField usernameField;
 
+    @FXML
+    private PasswordField passwordField;
+
+    @FXML
+    private PasswordField confirmPasswordField;
+
+    @FXML
+    private TextField phoneNumberField;
+
+    @FXML
+    private TextField emailField;
+
+    @FXML
+    private Label confirmPasswordLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         File brandingFile = new File("images/loginMenu.png");
@@ -52,6 +67,22 @@ public class RegisterController implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
             e.getCause();
+        }
+    }
+
+    public void registerButtonOnAction(ActionEvent e){
+        if (usernameField.getText().isBlank() == true || passwordField.getText().isBlank() == true || phoneNumberField.getText().isBlank() == true || emailField.getText().isBlank() == true){
+            confirmPasswordLabel.setText("Пожалуйста заполните все поля");
+        }else {
+            registerUser();
+        }
+    }
+
+    private void registerUser(){
+        if (passwordField.getText().equals(confirmPasswordField.getText())){
+            //confirmPasswordLabel.setText("");
+        }else {
+            confirmPasswordLabel.setText("Пароли не совпадают");
         }
     }
 }
