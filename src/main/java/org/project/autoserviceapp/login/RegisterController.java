@@ -1,4 +1,4 @@
-package org.project.autoserviceapp;
+package org.project.autoserviceapp.login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
@@ -16,8 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 
@@ -26,6 +23,11 @@ public class RegisterController implements Initializable {
     @FXML
     private ImageView brandingImageView;
 
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private TextField familyField;
     @FXML
     private TextField usernameField;
 
@@ -71,7 +73,7 @@ public class RegisterController implements Initializable {
     }
 
     public void registerButtonOnAction(ActionEvent e){
-        if (usernameField.getText().isBlank() == true || passwordField.getText().isBlank() == true || phoneNumberField.getText().isBlank() == true || emailField.getText().isBlank() == true){
+        if (usernameField.getText().isBlank() == true || passwordField.getText().isBlank() == true || phoneNumberField.getText().isBlank() == true || emailField.getText().isBlank() == true || nameField.getText().isBlank() == true || familyField.getText().isBlank() == true){
             confirmPasswordLabel.setText("Пожалуйста заполните все поля");
         }else {
             registerUser();

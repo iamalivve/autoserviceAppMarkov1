@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.LoginAdminController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.login.LoginAdminController">
     <left>
         <AnchorPane prefHeight="400.0" prefWidth="330.0" style="-fx-background-color: #D3D3D3;" BorderPane.alignment="CENTER">
             <children>
@@ -19,7 +19,7 @@
                         <Font name="Times New Roman" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="usernameField" layoutX="34.0" layoutY="139.0" prefHeight="40.0" prefWidth="270.0" promptText="Логин" AnchorPane.bottomAnchor="221.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="139.0">
+                <TextField fx:id="usernameField" layoutX="34.0" layoutY="139.0" prefHeight="40.0" prefWidth="270.0" promptText="Логин (Berezhnoy)" AnchorPane.bottomAnchor="221.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="139.0">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font></TextField>
@@ -28,7 +28,7 @@
                         <Font name="Times New Roman" size="18.0" />
                     </font>
                 </Label>
-                <PasswordField fx:id="passwordField" layoutX="34.0" layoutY="229.0" prefHeight="40.0" prefWidth="270.0" promptText="Пароль" AnchorPane.bottomAnchor="131.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+                <PasswordField fx:id="passwordField" layoutX="34.0" layoutY="229.0" prefHeight="40.0" prefWidth="270.0" promptText="Пароль (111)" AnchorPane.bottomAnchor="131.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font></PasswordField>
@@ -60,7 +60,7 @@
          <children>
                 <ImageView fx:id="brandingImageView" fitHeight="400.0" fitWidth="220.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../../../images/loginMenu.png" />
+                        <Image url="@../../../../../../../images/loginMenu.png" />
                     </image></ImageView>
          </children></AnchorPane>
     </right>

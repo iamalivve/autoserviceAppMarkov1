@@ -1,4 +1,4 @@
-package org.project.autoserviceapp;
+package org.project.autoserviceapp.login;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
