@@ -12,9 +12,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.project.autoserviceapp.DatabaseConnection;
 
 import java.io.File;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 
@@ -28,6 +31,7 @@ public class RegisterController implements Initializable {
 
     @FXML
     private TextField familyField;
+
     @FXML
     private TextField usernameField;
 
@@ -81,10 +85,36 @@ public class RegisterController implements Initializable {
     }
 
     private void registerUser(){
+        ((Stage) usernameField.getScene().getWindow()).close();
+
+        DatabaseConnection connectionNow = new DatabaseConnection();
+        Connection connectDB = connectionNow.getConnection();
+
+        String firstname = nameField.getText();
+        String family = familyField.getText();
+        String phoneNumber = phoneNumberField.getText();
+        String email = emailField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+
+        String insertFields = "INSERT INTO Client(client_name, client_family, client_login, client_password, client_phoneNumber, client_email) VALUES ('";
+        String insertValues = firstname + "','" + family + "','" + username + "','" + password + "','" + phoneNumber + "','" + email + "')";
+        String insertToRegister = insertFields + insertValues;
+
         if (passwordField.getText().equals(confirmPasswordField.getText())){
-            //confirmPasswordLabel.setText("");
+
         }else {
             confirmPasswordLabel.setText("Пароли не совпадают");
+        }
+
+        try{
+            Statement statement = connectDB.createStatement();
+            statement.executeUpdate(insertToRegister);
+            openClientLogin();
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
         }
     }
 }
