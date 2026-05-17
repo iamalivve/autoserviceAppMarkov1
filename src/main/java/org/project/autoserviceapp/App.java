@@ -1,4 +1,4 @@
-package org.project.autoserviceapp.login;
+package org.project.autoserviceapp;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start (Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("autoservice_login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/project/autoserviceapp/login/autoservice_login.fxml"));
         stage.setTitle("AVTO67");
         stage.setScene(new Scene(root, 600, 400));
         stage.show();
