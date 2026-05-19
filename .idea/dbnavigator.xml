@@ -41,6 +41,12 @@
       <assistant-state connection-id="418c8e00-85df-4e3a-8e0b-fbf0b4f81fff" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
+      <assistant-state connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
+        <tools />
+      </assistant-state>
+      <assistant-state connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+        <tools />
+      </assistant-state>
       <assistant-state connection-id="c20e07ac-d75f-494a-8e7d-1e8197872d76" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
       </assistant-state>
@@ -59,7 +65,7 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="fa8719ea-f4f6-4607-9148-3840815c78e5">
+    <connection id="61817f49-5a64-4287-b871-c2d0a6bd8c3b">
       <console name="autoserviceApp" type="STANDARD" schema="main" session="Main" />
     </connection>
   </component>
@@ -67,13 +73,30 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/sqlite_sequence" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Admin" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Storage" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Worker" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Orders" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Service" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Client" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabasePrerequisiteManager">
     <prerequisites />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="fa8719ea-f4f6-4607-9148-3840815c78e5" />
+    <connection id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Orders" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Admin" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Service" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.sqlite_sequence" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Storage" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Client" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Worker" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -92,7 +115,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection source-id="" id="fa8719ea-f4f6-4607-9148-3840815c78e5" active="true" signed="true">
+      <connection source-id="" id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" active="true" signed="true">
         <database>
           <name value="autoserviceApp" />
           <description value="" />
