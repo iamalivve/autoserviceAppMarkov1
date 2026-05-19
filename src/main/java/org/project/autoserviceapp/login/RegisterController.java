@@ -79,13 +79,14 @@ public class RegisterController implements Initializable {
     public void registerButtonOnAction(ActionEvent e){
         if (usernameField.getText().isBlank() == true || passwordField.getText().isBlank() == true || phoneNumberField.getText().isBlank() == true || emailField.getText().isBlank() == true || nameField.getText().isBlank() == true || familyField.getText().isBlank() == true){
             confirmPasswordLabel.setText("Пожалуйста заполните все поля");
+        } else if(!passwordField.getText().equals(confirmPasswordField.getText())){
+            confirmPasswordLabel.setText("Пароли не совпадают");
         }else {
             registerUser();
         }
     }
 
     private void registerUser(){
-        ((Stage) usernameField.getScene().getWindow()).close();
 
         DatabaseConnection connectionNow = new DatabaseConnection();
         Connection connectDB = connectionNow.getConnection();
@@ -97,20 +98,14 @@ public class RegisterController implements Initializable {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-
         String insertFields = "INSERT INTO Client(client_name, client_family, client_login, client_password, client_phoneNumber, client_email) VALUES ('";
         String insertValues = firstname + "','" + family + "','" + username + "','" + password + "','" + phoneNumber + "','" + email + "')";
         String insertToRegister = insertFields + insertValues;
 
-        if (passwordField.getText().equals(confirmPasswordField.getText())){
-
-        }else {
-            confirmPasswordLabel.setText("Пароли не совпадают");
-        }
-
         try{
             Statement statement = connectDB.createStatement();
             statement.executeUpdate(insertToRegister);
+            ((Stage) usernameField.getScene().getWindow()).close();
             openClientLogin();
         }catch (Exception e){
             e.printStackTrace();

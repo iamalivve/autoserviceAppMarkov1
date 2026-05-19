@@ -4,7 +4,7 @@ module autoserviceApp {
     requires java.desktop;
     requires javafx.graphics;
     requires java.sql;
-    requires sqlite.jdbc;
+    requires org.xerial.sqlitejdbc;
 
     opens org.project.autoserviceapp;
     exports org.project.autoserviceapp;
