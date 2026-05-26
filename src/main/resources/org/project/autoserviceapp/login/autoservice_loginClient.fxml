@@ -14,7 +14,7 @@
     <left>
         <AnchorPane prefHeight="400.0" prefWidth="220.0" BorderPane.alignment="CENTER">
             <children>
-                <ImageView fx:id="brandingImageView" fitHeight="400.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="brandingImageView" fitHeight="400.0" fitWidth="220.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../../../../../../images/loginMenu.png" />
                     </image></ImageView>

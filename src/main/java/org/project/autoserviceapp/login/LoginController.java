@@ -1,5 +1,6 @@
 package org.project.autoserviceapp.login;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -42,6 +43,7 @@ public class LoginController implements Initializable{
             Stage registrerStage = new Stage();
             registrerStage.setTitle("Вход");
             registrerStage.setScene(new Scene(root, 550, 400));
+            Platform.runLater(() -> root.requestFocus());
             registrerStage.show();
 
         }catch (Exception e){

@@ -58,6 +58,7 @@ public class LoginClientController implements Initializable {
 
             while (queryResult.next()){
                 if (queryResult.getInt(1) == 1){
+                    ((Stage) usernameField.getScene().getWindow()).close();
                     openClientWindow();
                 }else {
                     loginMessageLabel.setText("Неверный логин или пароль");
@@ -86,7 +87,19 @@ public class LoginClientController implements Initializable {
         }
     }
 
-    private void openClientWindow(){}
+    private void openClientWindow(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/org/project/autoserviceapp/client/client_menu.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("AVTO67");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 
     private void openLoginWindow() {
         try {

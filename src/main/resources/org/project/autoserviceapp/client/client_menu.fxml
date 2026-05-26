@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.client.ClientController">
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="179.0" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="44.0" layoutY="37.0" text="AVTO67">
+               <font>
+                  <Font name="Impact" size="36.0" />
+               </font>
+            </Label>
+            <Button layoutX="34.0" layoutY="115.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #f7931e;" text="Личный кабинет" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>
