@@ -27,7 +27,7 @@ public class Client {
         this.client_email = client_email;
     }
 
-    // Геттеры и сеттеры
+    //Геттеры и сеттеры
     public int getClient_id() { return client_id; }
     public void setClient_id(int client_id) { this.client_id = client_id; }
 
@@ -54,7 +54,7 @@ public class Client {
     //Получить все данные
     public static List<Client> getAll() {
         List<Client> clients = new ArrayList<>();
-        String sql = "SELECT * FROM Clients";
+        String sql = "SELECT * FROM Client";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
@@ -80,7 +80,7 @@ public class Client {
 
     //Добавить
     public static boolean add(Client client) {
-        String sql = "INSERT INTO Clients (client_name, client_family, client_login, " + "client_password, client_phoneNumber, client_email) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Client (client_name, client_family, client_login, " + "client_password, client_phoneNumber, client_email) VALUES (?, ?, ?, ?, ?, ?)";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
@@ -109,7 +109,7 @@ public class Client {
 
     //Обновить
     public static boolean update(Client client) {
-        String sql = "UPDATE Clients SET client_name=?, client_family=?, client_login=?, " + "client_password=?, client_phoneNumber=?, client_email=? WHERE client_id=?";
+        String sql = "UPDATE Client SET client_name=?, client_family=?, client_login=?, " + "client_password=?, client_phoneNumber=?, client_email=? WHERE client_id=?";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
@@ -132,7 +132,7 @@ public class Client {
 
     //Удалить
     public static boolean delete(int id) {
-        String sql = "DELETE FROM Clients WHERE client_id = ?";
+        String sql = "DELETE FROM Client WHERE client_id = ?";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();

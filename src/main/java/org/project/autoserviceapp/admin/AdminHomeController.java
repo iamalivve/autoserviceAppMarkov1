@@ -1,148 +1,85 @@
 package org.project.autoserviceapp.admin;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-import java.io.IOException;
+import org.project.autoserviceapp.DatabaseConnection;
+import java.sql.*;
 
 public class AdminHomeController {
-    @FXML
-    private Label admins_name;
-    @FXML
-    private Button exitbutton;
-    @FXML
-    private Button houseButton;
-    @FXML
-    private Button clientsButton;
-    @FXML
-    private Button workersButton;
-    @FXML
-    private Button activeOrdersButton;
-    @FXML
-    private Button historyOrdersButton;
-    @FXML
-    private Button storageButton;
+
+    @FXML private Label clientsCountLabel;
+    @FXML private Label activeOrdersCountLabel;
+    @FXML private Label storageCountLabel;
+    @FXML private Label admins_name;
+    @FXML private Button exitbutton;
 
     private Stage primaryStage;
     private String adminName;
 
-    public void setPrimaryStage(Stage stage) {
-        this.primaryStage = stage;
-    }
+    public void setPrimaryStage(Stage stage) { this.primaryStage = stage; }
 
     public void setAdminName(String name) {
         this.adminName = name;
-        if (admins_name != null) {
-            admins_name.setText(name);
-        }
+        if (admins_name != null) admins_name.setText(name);
+        loadCounts();
     }
-    @FXML
-    private void handleHouseButton() {}
 
     @FXML
-    private void handleClientsButton() {
-        primaryStage.close();
-        openClients();
+    public void initialize() {
+        loadCounts();
     }
-    @FXML
-    private void handleWorkersButton() {
-        primaryStage.close();
-        openWorkers();
+
+    //Навигация
+
+    @FXML private void handleHouseButton() { loadCounts(); }
+    @FXML private void handleClientsButton() { SceneNavigator.goToClients(primaryStage); }
+    @FXML private void handleWorkersButton() { SceneNavigator.goToWorkers(primaryStage); }
+    @FXML private void handleActiveOrdersButton() { SceneNavigator.goToActiveOrders(primaryStage); }
+    @FXML private void handleHistoryOrdersButton() { SceneNavigator.goToHistoryOrders(primaryStage); }
+    @FXML private void handleStorageButton() { SceneNavigator.goToStorage(primaryStage); }
+
+    @FXML public void actionExitButton(ActionEvent event) {
+        SceneNavigator.goToLogin(primaryStage);
     }
-    @FXML
-    private void handleActiveOrdersButton() {
-        primaryStage.close();
-        openActiveOrders();
+
+    //Счетчик
+
+    private void loadCounts() {
+        loadClientsCount();
+        loadActiveOrdersCount();
+        loadStorageCount();
     }
-    @FXML
-    private void handleHistoryOrdersButton() {
-        primaryStage.close();
-        openHistoryOrders();
+
+    private void loadClientsCount() {
+        String sql = "SELECT COUNT(*) FROM Client";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        try (Connection conn = dbConn.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) clientsCountLabel.setText(String.valueOf(rs.getInt(1)));
+        } catch (SQLException e) { clientsCountLabel.setText("0"); }
     }
-    @FXML
-    private void handleStorageButton() {
-        primaryStage.close();
-        openStorage();
+
+    private void loadActiveOrdersCount() {
+        String sql = "SELECT COUNT(*) FROM Orders WHERE order_status != 'Готов'";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        try (Connection conn = dbConn.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) activeOrdersCountLabel.setText(String.valueOf(rs.getInt(1)));
+        } catch (SQLException e) { activeOrdersCountLabel.setText("0"); }
     }
-    @FXML
-    public void actionExitButton(ActionEvent event) {
-        primaryStage.close();
-        logOut();
-    }
-    private void openClients() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("admin_clients.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 600);
-            Stage stage = new Stage();
-            stage.setTitle("AVTO67");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void openWorkers() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("admin_workers.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 600);
-            Stage stage = new Stage();
-            stage.setTitle("AVTO67");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void openActiveOrders() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("admin_activeOrders.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 600);
-            Stage stage = new Stage();
-            stage.setTitle("AVTO67");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void openHistoryOrders() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("admin_historyOrders.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 600);
-            Stage stage = new Stage();
-            stage.setTitle("AVTO67");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void openStorage() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("admin_storage.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 600);
-            Stage stage = new Stage();
-            stage.setTitle("AVTO67");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void logOut() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/project/autoserviceapp/login/autoservice_login.fxml"));
-            Scene scene = new Scene(loader.load(), 550, 400);
-            Stage stage = new Stage();
-            stage.setTitle("AVTO67");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+    private void loadStorageCount() {
+        String sql = "SELECT SUM(storage_sum) FROM Storage";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        try (Connection conn = dbConn.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) storageCountLabel.setText(String.valueOf(rs.getInt(1)));
+        } catch (SQLException e) { storageCountLabel.setText("0"); }
     }
 }

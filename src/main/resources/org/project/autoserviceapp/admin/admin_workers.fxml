@@ -29,29 +29,29 @@
          <children>
             <AnchorPane prefHeight="313.0" prefWidth="718.0" style="-fx-background-color: lightgray; -fx-background-radius: 10px;">
                <children>
-                  <TableView layoutX="7.0" layoutY="56.0" prefHeight="244.0" prefWidth="702.0" style="-fx-background-radius: 15px;">
+                  <TableView fx:id="workersTable" layoutX="7.0" layoutY="56.0" prefHeight="244.0" prefWidth="702.0" style="-fx-background-radius: 15px;">
                      <columns>
-                        <TableColumn prefWidth="36.0" text="ID" />
-                        <TableColumn prefWidth="65.0" text="Имя" />
-                        <TableColumn prefWidth="93.0" text="Фамилия" />
-                        <TableColumn prefWidth="99.0" text="Отчество" />
-                        <TableColumn prefWidth="94.0" text="Телефон" />
-                        <TableColumn minWidth="0.0" prefWidth="81.0" text="Почта" />
-                        <TableColumn prefWidth="73.0" text="Роль" />
-                        <TableColumn prefWidth="84.0" text="График" />
-                        <TableColumn prefWidth="76.0" text="Зарплата" />
+                        <TableColumn fx:id="colId" prefWidth="36.0" text="ID" />
+                        <TableColumn fx:id="colName" prefWidth="65.0" text="Имя" />
+                        <TableColumn fx:id="colFamily" prefWidth="93.0" text="Фамилия" />
+                        <TableColumn fx:id="colLastName" prefWidth="99.0" text="Отчество" />
+                        <TableColumn fx:id="colPhone" prefWidth="94.0" text="Телефон" />
+                        <TableColumn fx:id="colEmail" minWidth="0.0" prefWidth="81.0" text="Почта" />
+                        <TableColumn fx:id="colRole" prefWidth="73.0" text="Роль" />
+                        <TableColumn fx:id="colSchedule" prefWidth="84.0" text="График" />
+                        <TableColumn fx:id="colSalary" prefWidth="76.0" text="Зарплата" />
                      </columns>
                   </TableView>
                </children>
             </AnchorPane>
             <VBox layoutX="117.0" layoutY="325.0" prefHeight="213.0" prefWidth="154.0" spacing="15.0">
                <children>
-                  <TextField prefHeight="25.0" prefWidth="154.0" />
-                  <TextField prefHeight="25.0" prefWidth="154.0" />
-                  <TextField prefHeight="25.0" prefWidth="154.0" />
-                  <TextField prefHeight="25.0" prefWidth="154.0" />
-                  <TextField prefHeight="25.0" prefWidth="154.0" />
-                  <TextField prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="idField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="nameField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="familyField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="lastNameField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="phoneField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="emailField" prefHeight="25.0" prefWidth="154.0" />
                </children>
             </VBox>
             <VBox alignment="TOP_RIGHT" layoutX="18.0" layoutY="325.0" prefHeight="225.0" prefWidth="87.0" spacing="17.0">
@@ -90,9 +90,9 @@
             </VBox>
             <VBox layoutX="409.0" layoutY="325.0" prefHeight="66.0" prefWidth="173.0" spacing="15.0">
                <children>
-                  <TextField prefHeight="25.0" prefWidth="173.0" />
-                  <TextField prefHeight="25.0" prefWidth="173.0" />
-                  <TextField prefHeight="25.0" prefWidth="173.0" />
+                  <TextField fx:id="roleField" prefHeight="25.0" prefWidth="173.0" />
+                  <TextField fx:id="scheduleField" prefHeight="25.0" prefWidth="173.0" />
+                  <TextField fx:id="salaryField" prefHeight="25.0" prefWidth="173.0" />
                </children>
             </VBox>
             <VBox alignment="TOP_RIGHT" layoutX="277.0" layoutY="325.0" prefHeight="66.0" prefWidth="117.0" spacing="17.0">
@@ -116,7 +116,7 @@
             </VBox>
             <HBox layoutX="288.0" layoutY="496.0" prefHeight="36.0" prefWidth="401.0" spacing="15.0">
                <children>
-                  <Button fx:id="clearButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="88.0" style="-fx-background-color: #6e2b90; -fx-background-radius: 10px;" text="Очистить" textFill="WHITE">
+                  <Button fx:id="clearButton" mnemonicParsing="false" onAction="#actionClear" prefHeight="36.0" prefWidth="88.0" style="-fx-background-color: #6e2b90; -fx-background-radius: 10px;" text="Очистить" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="14.0" />
                      </font>
@@ -128,7 +128,7 @@
                         </DropShadow>
                      </effect>
                   </Button>
-                  <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="88.0" style="-fx-background-color: #861e1e; -fx-background-radius: 10px;" text="Удалить" textFill="WHITE">
+                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#actionDelete" prefHeight="36.0" prefWidth="88.0" style="-fx-background-color: #861e1e; -fx-background-radius: 10px;" text="Удалить" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="14.0" />
                      </font>
@@ -140,7 +140,7 @@
                         </DropShadow>
                      </effect>
                   </Button>
-                  <Button fx:id="editButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" style="-fx-background-color: #00155e; -fx-background-radius: 10px;" text="Изменить" textFill="WHITE">
+                  <Button fx:id="editButton" mnemonicParsing="false" onAction="#actionEdit" prefHeight="36.0" prefWidth="94.0" style="-fx-background-color: #00155e; -fx-background-radius: 10px;" text="Изменить" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="14.0" />
                      </font>
@@ -152,7 +152,7 @@
                         </DropShadow>
                      </effect>
                   </Button>
-                  <Button fx:id="addButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="88.0" style="-fx-background-color: #238346; -fx-background-radius: 10px;" text="Добавить" textFill="WHITE">
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#actionAdd" prefHeight="36.0" prefWidth="88.0" style="-fx-background-color: #238346; -fx-background-radius: 10px;" text="Добавить" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="14.0" />
                      </font>
@@ -191,12 +191,12 @@
             </Text>
             <VBox layoutX="12.0" layoutY="241.0" prefHeight="295.0" prefWidth="231.0" spacing="15.0">
                <children>
-                  <Button fx:id="houseButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Главное меню" textFill="WHITE">
+                  <Button fx:id="houseButton" mnemonicParsing="false" onAction="#handleHouseButton" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Главное меню" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="clientsButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Клиенты" textFill="WHITE">
+                  <Button fx:id="clientsButton" mnemonicParsing="false" onAction="#handleClientsButton" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Клиенты" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
@@ -206,17 +206,17 @@
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="activeOrdersButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Активные заказы" textFill="WHITE">
+                  <Button fx:id="activeOrdersButton" mnemonicParsing="false" onAction="#handleActiveOrdersButton" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Активные заказы" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="historyOrdersButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Архив заказов" textFill="WHITE">
+                  <Button fx:id="historyOrdersButton" mnemonicParsing="false" onAction="#handleHistoryOrdersButton" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Архив заказов" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="storageButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Склад запчастей" textFill="WHITE">
+                  <Button fx:id="storageButton" mnemonicParsing="false" onAction="#handleStorageButton" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Склад запчастей" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>

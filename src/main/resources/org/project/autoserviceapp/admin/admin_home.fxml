@@ -35,7 +35,7 @@
                               <Font name="TT Interphases Pro Trl Rg" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="60.0" layoutY="82.0" prefHeight="53.0" prefWidth="90.0">
+                        <Label fx:id="clientsCountLabel" layoutX="60.0" layoutY="82.0" prefHeight="53.0" prefWidth="90.0">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -54,7 +54,7 @@
                               <Font name="TT Interphases Pro Trl Bd It" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="61.0" layoutY="82.0" prefHeight="53.0" prefWidth="90.0">
+                        <Label fx:id="activeOrdersCountLabel" layoutX="61.0" layoutY="82.0" prefHeight="53.0" prefWidth="90.0">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -68,7 +68,7 @@
                               <Font name="TT Interphases Pro Trl Rg" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="65.0" layoutY="88.0" prefHeight="53.0" prefWidth="90.0">
+                        <Label fx:id="storageCountLabel" layoutX="65.0" layoutY="88.0" prefHeight="53.0" prefWidth="90.0">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -100,7 +100,7 @@
             </Text>
             <VBox layoutX="12.0" layoutY="241.0" prefHeight="295.0" prefWidth="231.0" spacing="15.0">
                <children>
-                  <Button fx:id="houseButton" mnemonicParsing="false" onAction="#handleHouseButton" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #ad691a; -fx-background-radius: 10px;" text="Главное меню" textFill="WHITE">
+                  <Button fx:id="houseButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #ad691a; -fx-background-radius: 10px;" text="Главное меню" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>

@@ -2,20 +2,11 @@ package org.project.autoserviceapp.admin;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-import org.project.autoserviceapp.DatabaseConnection;
 import org.project.autoserviceapp.admin.DB.Client;
-
-import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AdminClientsController {
 
@@ -37,12 +28,20 @@ public class AdminClientsController {
     @FXML private TextField emailField;
 
     @FXML private Button exitbutton;
+    @FXML private Label admins_name;
+
+    private Stage primaryStage;
+    private String adminName;
+
+    public void setPrimaryStage(Stage stage) { this.primaryStage = stage; }
+
+    public void setAdminName(String name) {
+        this.adminName = name;
+        if (admins_name != null) admins_name.setText(name);
+    }
 
     @FXML
     public void initialize() {
-        System.out.println("=== AdminClientsController инициализирован ===");
-
-        // Настройка колонок
         colId.setCellValueFactory(new PropertyValueFactory<>("client_id"));
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("client_name"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("client_family"));
@@ -51,52 +50,15 @@ public class AdminClientsController {
         colPhone.setCellValueFactory(new PropertyValueFactory<>("client_phoneNumber"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("client_email"));
 
-        System.out.println("Колонки настроены");
-
-        // Загрузка данных
         loadClients();
 
-        // Выбор строки
         clientsTable.getSelectionModel().selectedItemProperty().addListener(
-                (obs, old, newVal) -> {
-                    if (newVal != null) {
-                        fillFields(newVal);
-                    }
-                }
+                (obs, old, newVal) -> { if (newVal != null) fillFields(newVal); }
         );
     }
 
     private void loadClients() {
-        System.out.println("Загрузка клиентов из БД...");
-        List<Client> clients = new ArrayList<>();
-        String sql = "SELECT * FROM Client";  // ← ИСПРАВЛЕНО: Clients → Client
-
-        DatabaseConnection dbConn = new DatabaseConnection();
-        try (Connection conn = dbConn.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {
-                Client client = new Client(
-                        rs.getInt("client_id"),
-                        rs.getString("client_name"),
-                        rs.getString("client_family"),
-                        rs.getString("client_login"),
-                        rs.getString("client_password"),
-                        rs.getString("client_phoneNumber"),
-                        rs.getString("client_email")
-                );
-                clients.add(client);
-                System.out.println("Найден клиент: " + client.getClient_name() + " " + client.getClient_family());
-            }
-
-            clientsTable.setItems(FXCollections.observableArrayList(clients));
-            System.out.println("Загружено клиентов: " + clients.size());
-
-        } catch (SQLException e) {
-            System.out.println("Ошибка при загрузке: " + e.getMessage());
-            e.printStackTrace();
-        }
+        clientsTable.setItems(FXCollections.observableArrayList(Client.getAll()));
     }
 
     private void fillFields(Client c) {
@@ -110,138 +72,72 @@ public class AdminClientsController {
     }
 
     private void clearFields() {
-        idField.clear();
-        firstNameField.clear();
-        lastNameField.clear();
-        loginField.clear();
-        passwordField.clear();
-        phoneField.clear();
-        emailField.clear();
+        idField.clear(); firstNameField.clear(); lastNameField.clear();
+        loginField.clear(); passwordField.clear(); phoneField.clear(); emailField.clear();
         clientsTable.getSelectionModel().clearSelection();
     }
 
-    @FXML
-    private void actionClear() {
-        clearFields();
-    }
+    @FXML private void actionClear() { clearFields(); }
 
-    @FXML
-    private void actionDelete() {
+    @FXML private void actionDelete() {
         Client selected = clientsTable.getSelectionModel().getSelectedItem();
-        if (selected == null) {
-            showAlert("Ошибка", "Выберите клиента");
-            return;
-        }
-
-        String sql = "DELETE FROM Client WHERE client_id = ?";
-
-        DatabaseConnection dbConn = new DatabaseConnection();
-        try (Connection conn = dbConn.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, selected.getClient_id());
-            int affected = stmt.executeUpdate();
-
-            if (affected > 0) {
-                loadClients();
-                clearFields();
-                showAlert("Успех", "Клиент удалён");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            showAlert("Ошибка", "Не удалось удалить: " + e.getMessage());
+        if (selected == null) { showAlert("Ошибка", "Выберите клиента"); return; }
+        if (Client.delete(selected.getClient_id())) {
+            loadClients(); clearFields();
+            showAlert("Успех", "Клиент удалён");
         }
     }
 
-    @FXML
-    private void actionEdit() {
+    @FXML private void actionEdit() {
         Client selected = clientsTable.getSelectionModel().getSelectedItem();
-        if (selected == null) {
-            showAlert("Ошибка", "Выберите клиента");
-            return;
-        }
+        if (selected == null) { showAlert("Ошибка", "Выберите клиента"); return; }
 
-        String sql = "UPDATE Client SET client_name=?, client_family=?, client_login=?, " +  "client_password=?, client_phoneNumber=?, client_email=? WHERE client_id=?";
+        selected.setClient_name(firstNameField.getText());
+        selected.setClient_family(lastNameField.getText());
+        selected.setClient_login(loginField.getText());
+        selected.setClient_password(passwordField.getText());
+        selected.setClient_phoneNumber(phoneField.getText());
+        selected.setClient_email(emailField.getText());
 
-        DatabaseConnection dbConn = new DatabaseConnection();
-        try (Connection conn = dbConn.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, firstNameField.getText());
-            stmt.setString(2, lastNameField.getText());
-            stmt.setString(3, loginField.getText());
-            stmt.setString(4, passwordField.getText());
-            stmt.setString(5, phoneField.getText());
-            stmt.setString(6, emailField.getText());
-            stmt.setInt(7, selected.getClient_id());
-
-            int affected = stmt.executeUpdate();
-            if (affected > 0) {
-                loadClients();
-                clearFields();
-                showAlert("Успех", "Данные обновлены");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            showAlert("Ошибка", "Не удалось обновить: " + e.getMessage());
+        if (Client.update(selected)) {
+            loadClients(); clearFields();
+            showAlert("Успех", "Данные обновлены");
         }
     }
 
-    @FXML
-    private void actionAdd() {
-        if (firstNameField.getText().isEmpty()) {
-            showAlert("Ошибка", "Введите имя");
-            return;
+    @FXML private void actionAdd() {
+        if (firstNameField.getText().isEmpty()) { showAlert("Ошибка", "Введите имя"); return; }
+
+        Client newClient = new Client();
+        newClient.setClient_name(firstNameField.getText());
+        newClient.setClient_family(lastNameField.getText());
+        newClient.setClient_login(loginField.getText());
+        newClient.setClient_password(passwordField.getText());
+        newClient.setClient_phoneNumber(phoneField.getText());
+        newClient.setClient_email(emailField.getText());
+
+        if (Client.add(newClient)) {
+            loadClients(); clearFields();
+            showAlert("Успех", "Клиент добавлен");
         }
+    }
 
-        String sql = "INSERT INTO Client (client_name, client_family, client_login, " +  "client_password, client_phoneNumber, client_email) VALUES (?, ?, ?, ?, ?, ?)";
+    //Навигация
 
-        DatabaseConnection dbConn = new DatabaseConnection();
-        try (Connection conn = dbConn.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+    @FXML private void handleHouseButton() { SceneNavigator.goToHome(primaryStage); }
+    @FXML private void handleClientsButton() {}
+    @FXML private void handleWorkersButton() { SceneNavigator.goToWorkers(primaryStage); }
+    @FXML private void handleActiveOrdersButton() { SceneNavigator.goToActiveOrders(primaryStage); }
+    @FXML private void handleHistoryOrdersButton() { SceneNavigator.goToHistoryOrders(primaryStage); }
+    @FXML private void handleStorageButton() { SceneNavigator.goToStorage(primaryStage); }
 
-            stmt.setString(1, firstNameField.getText());
-            stmt.setString(2, lastNameField.getText());
-            stmt.setString(3, loginField.getText());
-            stmt.setString(4, passwordField.getText());
-            stmt.setString(5, phoneField.getText());
-            stmt.setString(6, emailField.getText());
-
-            int affected = stmt.executeUpdate();
-            if (affected > 0) {
-                loadClients();
-                clearFields();
-                showAlert("Успех", "Клиент добавлен");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            showAlert("Ошибка", "Не удалось добавить: " + e.getMessage());
-        }
+    @FXML public void actionExitButton(ActionEvent event) {
+        SceneNavigator.goToLogin(primaryStage);
     }
 
     private void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(msg);
+        alert.setTitle(title); alert.setHeaderText(null); alert.setContentText(msg);
         alert.showAndWait();
-    }
-
-    @FXML
-    public void actionExitButton(ActionEvent event) {
-        ((Stage) exitbutton.getScene().getWindow()).close();
-        openLoginController();
-    }
-
-    public void openLoginController() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/org/project/autoserviceapp/login/autoservice_login.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("AVTO67");
-            stage.setScene(new Scene(root, 550, 400));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
