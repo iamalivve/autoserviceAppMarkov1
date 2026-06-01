@@ -133,7 +133,7 @@ public class AdminClientsController {
             return;
         }
 
-        String sql = "DELETE FROM Client WHERE client_id = ?";  // ← ИСПРАВЛЕНО
+        String sql = "DELETE FROM Client WHERE client_id = ?";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
@@ -161,8 +161,7 @@ public class AdminClientsController {
             return;
         }
 
-        String sql = "UPDATE Client SET client_name=?, client_family=?, client_login=?, " +  // ← ИСПРАВЛЕНО
-                "client_password=?, client_phoneNumber=?, client_email=? WHERE client_id=?";
+        String sql = "UPDATE Client SET client_name=?, client_family=?, client_login=?, " +  "client_password=?, client_phoneNumber=?, client_email=? WHERE client_id=?";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
@@ -195,8 +194,7 @@ public class AdminClientsController {
             return;
         }
 
-        String sql = "INSERT INTO Client (client_name, client_family, client_login, " +  // ← ИСПРАВЛЕНО
-                "client_password, client_phoneNumber, client_email) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Client (client_name, client_family, client_login, " +  "client_password, client_phoneNumber, client_email) VALUES (?, ?, ?, ?, ?, ?)";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
@@ -221,18 +219,18 @@ public class AdminClientsController {
         }
     }
 
-    @FXML
-    public void actionExitButton(ActionEvent event) {
-        ((Stage) exitbutton.getScene().getWindow()).close();
-        openLoginController();
-    }
-
     private void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
+    }
+
+    @FXML
+    public void actionExitButton(ActionEvent event) {
+        ((Stage) exitbutton.getScene().getWindow()).close();
+        openLoginController();
     }
 
     public void openLoginController() {

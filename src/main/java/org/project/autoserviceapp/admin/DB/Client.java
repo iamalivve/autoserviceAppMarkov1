@@ -14,7 +14,7 @@ public class Client {
     private String client_phoneNumber;
     private String client_email;
 
-    // Конструкторы
+    //Конструкторы
     public Client() {}
 
     public Client(int client_id, String client_name, String client_family, String client_login, String client_password, String client_phoneNumber, String client_email) {
@@ -80,8 +80,7 @@ public class Client {
 
     //Добавить
     public static boolean add(Client client) {
-        String sql = "INSERT INTO Clients (client_name, client_family, client_login, " +
-                "client_password, client_phoneNumber, client_email) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Clients (client_name, client_family, client_login, " + "client_password, client_phoneNumber, client_email) VALUES (?, ?, ?, ?, ?, ?)";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
@@ -110,8 +109,7 @@ public class Client {
 
     //Обновить
     public static boolean update(Client client) {
-        String sql = "UPDATE Clients SET client_name=?, client_family=?, client_login=?, " +
-                "client_password=?, client_phoneNumber=?, client_email=? WHERE client_id=?";
+        String sql = "UPDATE Clients SET client_name=?, client_family=?, client_login=?, " + "client_password=?, client_phoneNumber=?, client_email=? WHERE client_id=?";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
