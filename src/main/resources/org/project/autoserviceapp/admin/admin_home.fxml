@@ -98,34 +98,39 @@
                   <Font name="TT Intrphss Pr Trl Cnd Bd" size="24.0" />
                </font>
             </Text>
-            <VBox layoutX="12.0" layoutY="241.0" prefHeight="295.0" prefWidth="231.0" spacing="15.0">
+            <VBox layoutX="12.0" layoutY="241.0" prefHeight="312.0" prefWidth="231.0" spacing="10.0">
                <children>
-                  <Button fx:id="houseButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #ad691a; -fx-background-radius: 10px;" text="Главное меню" textFill="WHITE">
+                  <Button fx:id="houseButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #ad691a; -fx-background-radius: 10px;" text="Главное меню" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="clientsButton" mnemonicParsing="false" onAction="#handleClientsButton" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Клиенты" textFill="WHITE">
+                  <Button fx:id="clientsButton" mnemonicParsing="false" onAction="#handleClientsButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Клиенты" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="workersButton" mnemonicParsing="false" onAction="#handleWorkersButton" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Сотрудники" textFill="WHITE">
+                  <Button fx:id="workersButton" mnemonicParsing="false" onAction="#handleWorkersButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Сотрудники" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="activeOrdersButton" mnemonicParsing="false" onAction="#handleActiveOrdersButton" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Активные заказы" textFill="WHITE">
+                  <Button fx:id="serviceButton" mnemonicParsing="false" onAction="#handleServicesButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Список услуг" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="historyOrdersButton" mnemonicParsing="false" onAction="#handleHistoryOrdersButton" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Архив заказов" textFill="WHITE">
+                  <Button fx:id="activeOrdersButton" mnemonicParsing="false" onAction="#handleActiveOrdersButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Активные заказы" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="storageButton" mnemonicParsing="false" onAction="#handleStorageButton" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Склад запчастей" textFill="WHITE">
+                  <Button fx:id="historyOrdersButton" mnemonicParsing="false" onAction="#handleHistoryOrdersButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Архив заказов" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="storageButton" mnemonicParsing="false" onAction="#handleStorageButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Склад запчастей" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>

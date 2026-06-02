@@ -34,7 +34,7 @@ public class Storage {
     public int getStorage_numOfReserved() { return storage_numOfReserved; }
     public void setStorage_numOfReserved(int storage_numOfReserved) { this.storage_numOfReserved = storage_numOfReserved; }
 
-    //Добавить все данные
+    //Добавление всех Склада
     public static List<Storage> getAll() {
         List<Storage> parts = new ArrayList<>();
         String sql = "SELECT * FROM Storage";
@@ -58,26 +58,33 @@ public class Storage {
         return parts;
     }
 
-    //Добавить
+    //Кнопка "Добавить"
     public static boolean add(Storage part) {
         String sql = "INSERT INTO Storage (storage_type, storage_sum, storage_numOfReserved) VALUES (?, ?, ?)";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setString(1, part.getStorage_type());
             stmt.setInt(2, part.getStorage_sum());
             stmt.setInt(3, part.getStorage_numOfReserved());
 
-            return stmt.executeUpdate() > 0;
+            int affected = stmt.executeUpdate();
+            if (affected > 0) {
+                ResultSet rs = stmt.getGeneratedKeys();
+                if (rs.next()) {
+                    part.setStorage_id(rs.getInt(1));
+                }
+                return true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
-    //Обновить
+    //Кнопка "Изменить"
     public static boolean update(Storage part) {
         String sql = "UPDATE Storage SET storage_type=?, storage_sum=?, storage_numOfReserved=? WHERE storage_id=?";
 
@@ -97,7 +104,7 @@ public class Storage {
         }
     }
 
-    //Удалить
+    //Кнопка "Удалить"
     public static boolean delete(int id) {
         String sql = "DELETE FROM Storage WHERE storage_id = ?";
 

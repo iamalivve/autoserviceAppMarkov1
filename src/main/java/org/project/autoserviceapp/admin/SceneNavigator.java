@@ -6,12 +6,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class SceneNavigator {
+
     //Получаем имя администратора
     private static String adminName;
+
     //Устанавливаем имя администратора в приветствии
     public static void setAdminName(String name) {
         adminName = name;
     }
+
     //Главная страница
     public static void goToHome(Stage stage) {
         try {
@@ -29,6 +32,7 @@ public class SceneNavigator {
             e.printStackTrace();
         }
     }
+
     //Список клиентов
     public static void goToClients(Stage stage) {
         try {
@@ -46,6 +50,7 @@ public class SceneNavigator {
             e.printStackTrace();
         }
     }
+
     //Список сотрудников
     public static void goToWorkers(Stage stage) {
         try {
@@ -63,6 +68,25 @@ public class SceneNavigator {
             e.printStackTrace();
         }
     }
+
+    //Список услуг
+    public static void goToServices(Stage stage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/org/project/autoserviceapp/admin/admin_service.fxml"));
+            Parent root = loader.load();
+
+            AdminServiceController controller = loader.getController();
+            controller.setAdminName(adminName);
+            controller.setPrimaryStage(stage);
+
+            stage.setScene(new Scene(root, 1000, 600));
+            stage.setTitle("AVTO67 - Услуги");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     //Активные заказы
     public static void goToActiveOrders(Stage stage) {
         try {
@@ -80,6 +104,7 @@ public class SceneNavigator {
             e.printStackTrace();
         }
     }
+
     //Архив заказов
     public static void goToHistoryOrders(Stage stage) {
         try {
@@ -97,6 +122,7 @@ public class SceneNavigator {
             e.printStackTrace();
         }
     }
+
     //Склад запчастей
     public static void goToStorage(Stage stage) {
         try {
@@ -114,6 +140,7 @@ public class SceneNavigator {
             e.printStackTrace();
         }
     }
+
     //Логин
     public static void goToLogin(Stage stage) {
         try {

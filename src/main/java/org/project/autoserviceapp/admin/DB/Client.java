@@ -49,9 +49,7 @@ public class Client {
     public String getClient_email() { return client_email; }
     public void setClient_email(String client_email) { this.client_email = client_email; }
 
-
-
-    //Получить все данные
+    //Добавление всех клиентов
     public static List<Client> getAll() {
         List<Client> clients = new ArrayList<>();
         String sql = "SELECT * FROM Client";
@@ -78,7 +76,7 @@ public class Client {
         return clients;
     }
 
-    //Добавить
+    //Кнопка "Добавить"
     public static boolean add(Client client) {
         String sql = "INSERT INTO Client (client_name, client_family, client_login, " + "client_password, client_phoneNumber, client_email) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -107,7 +105,7 @@ public class Client {
         return false;
     }
 
-    //Обновить
+    //Кнопка "Изменить"
     public static boolean update(Client client) {
         String sql = "UPDATE Client SET client_name=?, client_family=?, client_login=?, " + "client_password=?, client_phoneNumber=?, client_email=? WHERE client_id=?";
 
@@ -130,7 +128,7 @@ public class Client {
         }
     }
 
-    //Удалить
+    //Кнопка "Удалить"
     public static boolean delete(int id) {
         String sql = "DELETE FROM Client WHERE client_id = ?";
 

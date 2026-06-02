@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.admin.AdminHistoryOrdersController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.admin.AdminServiceController">
    <children>
       <AnchorPane layoutX="268.0" layoutY="13.0" prefHeight="571.0" prefWidth="717.0" style="-fx-background-color: white; -fx-background-radius: 10px;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
          <effect>
@@ -29,65 +29,51 @@
          <children>
             <AnchorPane prefHeight="313.0" prefWidth="718.0" style="-fx-background-color: lightgray; -fx-background-radius: 10px;">
                <children>
-                  <TableView fx:id="ordersTable" layoutX="7.0" layoutY="56.0" prefHeight="244.0" prefWidth="702.0" style="-fx-background-radius: 15px;">
+                  <TableView fx:id="servicesTable" layoutX="7.0" layoutY="56.0" prefHeight="244.0" prefWidth="702.0" style="-fx-background-radius: 15px;">
                      <columns>
-                        <TableColumn fx:id="colId" prefWidth="36.0" text="ID" />
-                        <TableColumn fx:id="colClientId" prefWidth="81.0" text="Клиент" />
-                        <TableColumn fx:id="colOrderNumber" prefWidth="89.0" text="Номер" />
-                        <TableColumn fx:id="colStatus" text="Статус" />
-                        <TableColumn fx:id="colOrderDate" prefWidth="97.0" text="Дата заказа" />
-                        <TableColumn fx:id="colOrderEndDate" prefWidth="100.0" text="Дата конца" />
-                        <TableColumn fx:id="colServiceId" minWidth="0.0" prefWidth="108.0" text="Вид услуги" />
-                        <TableColumn fx:id="colTotalPrice" prefWidth="110.0" text="Итоговая цена" />
+                        <TableColumn fx:id="colId" prefWidth="30.0" text="ID" />
+                        <TableColumn fx:id="colName" prefWidth="144.0" text="Название" />
+                        <TableColumn fx:id="colStorageId" prefWidth="143.0" text="Запчасть" />
+                        <TableColumn fx:id="colDeadlines" prefWidth="153.0" text="Сроки выполнения" />
+                        <TableColumn fx:id="colPrice" prefWidth="104.0" text="Цена" />
+                        <TableColumn fx:id="colWorkerId" prefWidth="127.0" text="Сотрудник" />
                      </columns>
                   </TableView>
                </children>
             </AnchorPane>
-            <VBox layoutX="117.0" layoutY="325.0" prefHeight="213.0" prefWidth="154.0" spacing="15.0">
+            <VBox layoutX="151.0" layoutY="325.0" prefHeight="145.0" prefWidth="154.0" spacing="15.0">
                <children>
                   <TextField fx:id="idField" prefHeight="25.0" prefWidth="154.0" />
-                  <TextField fx:id="clientIdField" prefHeight="25.0" prefWidth="154.0" />
-                  <TextField fx:id="orderNumberField" prefHeight="25.0" prefWidth="154.0" />
-                  <TextField fx:id="statusField" prefHeight="25.0" prefWidth="154.0" />
-                  <TextField fx:id="serviceIdField" prefHeight="25.0" prefWidth="154.0" />
-                  <TextField fx:id="totalPriceField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="nameField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="storageIdField" prefHeight="25.0" prefWidth="173.0" />
+                  <TextField fx:id="deadlinesField" prefHeight="25.0" prefWidth="173.0" />
                </children>
             </VBox>
-            <VBox alignment="TOP_RIGHT" layoutX="18.0" layoutY="325.0" prefHeight="225.0" prefWidth="87.0" spacing="17.0">
+            <VBox alignment="TOP_RIGHT" layoutX="18.0" layoutY="325.0" prefHeight="145.0" prefWidth="117.0" spacing="17.0">
                <children>
-                  <Label text="ID:">
+                  <Label prefHeight="23.0" prefWidth="23.0" text="ID:">
                      <font>
                         <Font name="TT Interphases Pro Trl Rg" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Клиент:">
+                  <Label prefHeight="23.0" prefWidth="87.0" text="Название:">
                      <font>
                         <Font name="TT Interphases Pro Trl Rg" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Номер:">
+                  <Label prefHeight="23.0" prefWidth="83.0" text="Запчасть:">
                      <font>
                         <Font name="TT Interphases Pro Trl Rg" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Статус:">
-                     <font>
-                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label text="Услуга:">
-                     <font>
-                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label text="Цена:">
+                  <Label prefHeight="23.0" prefWidth="61.0" text="Сроки:">
                      <font>
                         <Font name="TT Interphases Pro Trl Rg" size="18.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
-            <HBox layoutX="417.0" layoutY="497.0" prefHeight="36.0" prefWidth="191.0" spacing="15.0">
+            <HBox layoutX="288.0" layoutY="496.0" prefHeight="36.0" prefWidth="401.0" spacing="15.0">
                <children>
                   <Button fx:id="clearButton" mnemonicParsing="false" onAction="#actionClear" prefHeight="36.0" prefWidth="88.0" style="-fx-background-color: #6e2b90; -fx-background-radius: 10px;" text="Очистить" textFill="WHITE">
                      <font>
@@ -113,38 +99,57 @@
                         </DropShadow>
                      </effect>
                   </Button>
+                  <Button fx:id="editButton" mnemonicParsing="false" onAction="#actionEdit" prefHeight="36.0" prefWidth="94.0" style="-fx-background-color: #00155e; -fx-background-radius: 10px;" text="Изменить" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="14.0" />
+                     </font>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" offsetX="1.0" offsetY="1.0">
+                           <color>
+                              <Color red="0.501960813999176" green="0.501960813999176" blue="0.501960813999176" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#actionAdd" prefHeight="36.0" prefWidth="88.0" style="-fx-background-color: #238346; -fx-background-radius: 10px;" text="Добавить" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="14.0" />
+                     </font>
+                     <effect>
+                        <DropShadow offsetX="1.0" offsetY="1.0">
+                           <color>
+                              <Color red="0.501960813999176" green="0.501960813999176" blue="0.501960813999176" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
                </children>
             </HBox>
-            <Text layoutX="312.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.0">
-               <font>
-                  <Font name="TT Intrphss Pr Trl Cnd Rg" size="12.0" />
-               </font>
-            </Text>
-            <VBox layoutX="481.0" layoutY="326.0" prefHeight="65.0" prefWidth="154.0" spacing="15.0">
+            <VBox alignment="TOP_RIGHT" layoutX="348.0" layoutY="325.0" prefHeight="145.0" prefWidth="117.0" spacing="17.0">
                <children>
-                  <TextField fx:id="orderDateField" prefHeight="25.0" prefWidth="154.0" />
-                  <TextField fx:id="orderEndDateField" prefHeight="25.0" prefWidth="154.0" />
+                  <Label prefHeight="23.0" prefWidth="49.0" text="Цена:">
+                     <font>
+                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="23.0" prefWidth="96.0" text="Сотрудник:">
+                     <font>
+                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
-            <VBox alignment="TOP_RIGHT" layoutX="364.0" layoutY="326.0" prefHeight="65.0" prefWidth="105.0" spacing="17.0">
+            <VBox layoutX="478.0" layoutY="325.0" prefHeight="65.0" prefWidth="154.0" spacing="15.0">
                <children>
-                  <Label text="Дата заказа:">
-                     <font>
-                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label text="Дата конца:">
-                     <font>
-                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
-                     </font>
-                  </Label>
+                  <TextField fx:id="priceField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="workerIdField" prefHeight="25.0" prefWidth="154.0" />
                </children>
             </VBox>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="600.0" prefWidth="252.0" style="-fx-background-color: #f7931e;">
          <children>
-            <Button fx:id="exitbutton" layoutX="10.0" layoutY="556.0" minWidth="29.0" mnemonicParsing="false" onAction="#actionExitButton" prefHeight="25.0" prefWidth="29.0" style="-fx-background-radius: 10px 10px; -fx-background-color: #f7931e;" textFill="WHITE">
+            <Button fx:id="exitbutton" layoutX="9.0" layoutY="560.0" minWidth="29.0" mnemonicParsing="false" onAction="#actionExitButton" prefHeight="25.0" prefWidth="29.0" style="-fx-background-radius: 10px 10px; -fx-background-color: #f7931e;" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="43.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -158,7 +163,7 @@
                   <Font name="TT Intrphss Pr Trl Cnd Bd" size="24.0" />
                </font>
             </Text>
-            <VBox layoutX="12.0" layoutY="241.0" prefHeight="313.0" prefWidth="231.0" spacing="10.0">
+            <VBox layoutX="12.0" layoutY="241.0" prefHeight="307.0" prefWidth="231.0" spacing="10.0">
                <children>
                   <Button fx:id="houseButton" mnemonicParsing="false" onAction="#handleHouseButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Главное меню" textFill="WHITE">
                      <font>
@@ -175,7 +180,7 @@
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="serviceButton" mnemonicParsing="false" onAction="#handleServicesButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Список услуг" textFill="WHITE">
+                  <Button fx:id="serviceButton" mnemonicParsing="false" onAction="#handleServicesButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #ad691a; -fx-background-radius: 10px;" text="Список услуг" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
@@ -185,7 +190,7 @@
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="historyOrdersButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #ad691a; -fx-background-radius: 10px;" text="Архив заказов" textFill="WHITE">
+                  <Button fx:id="historyOrdersButton" mnemonicParsing="false" onAction="#handleHistoryOrdersButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Архив заказов" textFill="WHITE">
                      <font>
                         <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
                      </font>

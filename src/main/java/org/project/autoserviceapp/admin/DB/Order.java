@@ -18,8 +18,7 @@ public class Order {
     //Конструкторы
     public Order() {}
 
-    public Order(int order_id, int client_id, String order_number, String order_status,
-                 String orderDate, String orderEndDate, double totalPrice, int service_id) {
+    public Order(int order_id, int client_id, String order_number, String order_status, String orderDate, String orderEndDate, double totalPrice, int service_id) {
         this.order_id = order_id;
         this.client_id = client_id;
         this.order_number = order_number;
@@ -55,11 +54,10 @@ public class Order {
     public int getService_id() { return service_id; }
     public void setService_id(int service_id) { this.service_id = service_id; }
 
-
-    //Получение активных заказов
+    //Добавление данных для Активных Заказов
     public static List<Order> getActiveOrders() {
         List<Order> orders = new ArrayList<>();
-        String sql = "SELECT * FROM Orders WHERE order_status != 'Завершено'";
+        String sql = "SELECT * FROM Orders WHERE order_status != 'Готов'";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
@@ -84,10 +82,10 @@ public class Order {
         return orders;
     }
 
-    //Получение архива заказов
+    //Добавление данных для Архива Заказов
     public static List<Order> getArchiveOrders() {
         List<Order> orders = new ArrayList<>();
-        String sql = "SELECT * FROM Orders WHERE order_status = 'Завершено'";
+        String sql = "SELECT * FROM Orders WHERE order_status = 'Готов'";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
@@ -112,13 +110,13 @@ public class Order {
         return orders;
     }
 
-    //Добавить
+    //Кнопка "Добавить"
     public static boolean add(Order order) {
-        String sql = "INSERT INTO Orders (client_id, order_number, order_status, orderDate, totalPrice, service_id) VALUES (?, ?, ?, date('now'), ?, ?)";
+        String sql = "INSERT INTO Orders (client_id, order_number, order_status, orderDate, totalPrice, service_id) " + "VALUES (?, ?, ?, date('now'), ?, ?)";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setInt(1, order.getClient_id());
             stmt.setString(2, order.getOrder_number());
@@ -133,9 +131,9 @@ public class Order {
         }
     }
 
-    //Обновить
+    //Кнопка "Изменить"
     public static boolean update(Order order) {
-        String sql = "UPDATE Orders SET client_id=?, order_number=?, order_status=?, orderEndDate=?, totalPrice=?, service_id=? WHERE order_id=?";
+        String sql = "UPDATE Orders SET client_id=?, order_number=?, order_status=?, " + "orderEndDate=?, totalPrice=?, service_id=? WHERE order_id=?";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
@@ -156,7 +154,7 @@ public class Order {
         }
     }
 
-    //Удалить
+    //Кнопка "Удалить"
     public static boolean delete(int id) {
         String sql = "DELETE FROM Orders WHERE order_id = ?";
 

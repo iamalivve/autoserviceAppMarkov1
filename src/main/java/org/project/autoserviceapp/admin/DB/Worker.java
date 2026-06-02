@@ -19,8 +19,7 @@ public class Worker {
     //Конструкторы
     public Worker() {}
 
-    public Worker(int worker_id, String worker_family, String worker_name, String worker_lastName,
-                  String worker_phoneNum, String worker_email, String role, String schedule, double salary) {
+    public Worker(int worker_id, String worker_family, String worker_name, String worker_lastName, String worker_phoneNum, String worker_email, String role, String schedule, double salary) {
         this.worker_id = worker_id;
         this.worker_family = worker_family;
         this.worker_name = worker_name;
@@ -60,8 +59,7 @@ public class Worker {
     public double getSalary() { return salary; }
     public void setSalary(double salary) { this.salary = salary; }
 
-
-    //Получение всех сотрудников
+    //Добавление всех Сотрудников
     public static List<Worker> getAll() {
         List<Worker> workers = new ArrayList<>();
         String sql = "SELECT * FROM Worker";
@@ -90,9 +88,9 @@ public class Worker {
         return workers;
     }
 
-    //Добавить
+    //Кнопка "Добавить"
     public static boolean add(Worker worker) {
-        String sql = "INSERT INTO Worker (worker_family, worker_name, worker_lastName, worker_phoneNum, worker_email, role, schedule, salary) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Worker (worker_family, worker_name, worker_lastName, worker_phoneNum, " + "worker_email, role, schedule, salary) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
@@ -114,9 +112,9 @@ public class Worker {
         }
     }
 
-    //Обновить
+    //Кнопка "Изменить"
     public static boolean update(Worker worker) {
-        String sql = "UPDATE Worker SET worker_family=?, worker_name=?, worker_lastName=?, worker_phoneNum=?, worker_email=?, role=?, schedule=?, salary=? WHERE worker_id=?";
+        String sql = "UPDATE Worker SET worker_family=?, worker_name=?, worker_lastName=?, worker_phoneNum=?, " + "worker_email=?, role=?, schedule=?, salary=? WHERE worker_id=?";
 
         DatabaseConnection dbConn = new DatabaseConnection();
         try (Connection conn = dbConn.getConnection();
@@ -139,7 +137,7 @@ public class Worker {
         }
     }
 
-    //Удалить
+    //Кнопка "Удалить"
     public static boolean delete(int id) {
         String sql = "DELETE FROM Worker WHERE worker_id = ?";
 
