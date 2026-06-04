@@ -72,14 +72,21 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="61817f49-5a64-4287-b871-c2d0a6bd8c3b">
-      <console name="autoserviceApp" type="STANDARD" schema="main" session="Main" />
+      <console name="autoserviceApp" type="STANDARD" schema="main" session="Main"><![CDATA[select * from "Service"]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Client" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="consoles/autoserviceApp" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Service" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Admin" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Orders" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Storage" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabasePrerequisiteManager">
     <prerequisites />

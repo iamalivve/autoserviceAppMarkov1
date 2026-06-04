@@ -81,7 +81,9 @@ public class RegisterController implements Initializable {
             confirmPasswordLabel.setText("Пожалуйста заполните все поля");
         } else if(!passwordField.getText().equals(confirmPasswordField.getText())){
             confirmPasswordLabel.setText("Пароли не совпадают");
-        }else {
+        } else if (!emailField.getText().contains("@") || !emailField.getText().contains(".")) {
+                confirmPasswordLabel.setText("Введите корректный email");
+        } else {
             registerUser();
         }
     }
