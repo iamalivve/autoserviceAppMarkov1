@@ -13,7 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import org.project.autoserviceapp.DatabaseConnection;
-import org.project.autoserviceapp.admin.Admins_ClientsController;
+import org.project.autoserviceapp.admin.AdminHomeController;
+import org.project.autoserviceapp.admin.SceneNavigator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -73,20 +74,13 @@ public class LoginAdminController implements Initializable {
     private void openAdminHome() {
         try {
             String login = usernameField.getText();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/project/autoserviceapp/admin/admin_clients.fxml"));
-            Parent root = loader.load();
+            Stage stage = (Stage) usernameField.getScene().getWindow();
 
-            Admins_ClientsController controller = loader.getController();
-            controller.setUserInfo(login);
-
-            Stage stage = new Stage();
-            stage.setTitle("Администратор");
-            stage.setScene(new Scene(root, 1000, 600));
-            stage.show();
+            SceneNavigator.setAdminName(login);
+            SceneNavigator.goToHome(stage);
 
         } catch (Exception e) {
             e.printStackTrace();
-            e.getCause();
         }
     }
 

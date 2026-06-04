@@ -12,6 +12,8 @@ module autoserviceApp {
     opens org.project.autoserviceapp.login;
     exports org.project.autoserviceapp.admin;
     opens org.project.autoserviceapp.admin;
+    exports org.project.autoserviceapp.admin.DB;
+    opens org.project.autoserviceapp.admin.DB;
     exports org.project.autoserviceapp.client;
     opens org.project.autoserviceapp.client;
 }

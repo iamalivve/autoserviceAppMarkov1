@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.admin.AdminWorkersController">
+   <children>
+      <AnchorPane layoutX="268.0" layoutY="13.0" prefHeight="571.0" prefWidth="717.0" style="-fx-background-color: white; -fx-background-radius: 10px;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.31578946113586426" green="0.28070175647735596" blue="0.28070175647735596" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <AnchorPane prefHeight="313.0" prefWidth="718.0" style="-fx-background-color: lightgray; -fx-background-radius: 10px;">
+               <children>
+                  <TableView fx:id="workersTable" layoutX="7.0" layoutY="56.0" prefHeight="244.0" prefWidth="702.0" style="-fx-background-radius: 15px;">
+                     <columns>
+                        <TableColumn fx:id="colId" prefWidth="36.0" text="ID" />
+                        <TableColumn fx:id="colName" prefWidth="65.0" text="Имя" />
+                        <TableColumn fx:id="colFamily" prefWidth="93.0" text="Фамилия" />
+                        <TableColumn fx:id="colLastName" prefWidth="99.0" text="Отчество" />
+                        <TableColumn fx:id="colPhone" prefWidth="94.0" text="Телефон" />
+                        <TableColumn fx:id="colEmail" minWidth="0.0" prefWidth="81.0" text="Почта" />
+                        <TableColumn fx:id="colRole" prefWidth="73.0" text="Роль" />
+                        <TableColumn fx:id="colSchedule" prefWidth="84.0" text="График" />
+                        <TableColumn fx:id="colSalary" prefWidth="76.0" text="Зарплата" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <VBox layoutX="117.0" layoutY="325.0" prefHeight="213.0" prefWidth="154.0" spacing="15.0">
+               <children>
+                  <TextField fx:id="idField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="nameField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="familyField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="lastNameField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="phoneField" prefHeight="25.0" prefWidth="154.0" />
+                  <TextField fx:id="emailField" prefHeight="25.0" prefWidth="154.0" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_RIGHT" layoutX="18.0" layoutY="325.0" prefHeight="225.0" prefWidth="87.0" spacing="17.0">
+               <children>
+                  <Label text="ID:">
+                     <font>
+                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Имя:">
+                     <font>
+                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Фамилия:">
+                     <font>
+                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Отчество:">
+                     <font>
+                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Телефон:">
+                     <font>
+                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Почта:">
+                     <font>
+                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="409.0" layoutY="325.0" prefHeight="66.0" prefWidth="173.0" spacing="15.0">
+               <children>
+                  <TextField fx:id="roleField" prefHeight="25.0" prefWidth="173.0" />
+                  <TextField fx:id="scheduleField" prefHeight="25.0" prefWidth="173.0" />
+                  <TextField fx:id="salaryField" prefHeight="25.0" prefWidth="173.0" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_RIGHT" layoutX="277.0" layoutY="325.0" prefHeight="66.0" prefWidth="117.0" spacing="17.0">
+               <children>
+                  <Label text="Роль:">
+                     <font>
+                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="График:">
+                     <font>
+                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Зарплата:">
+                     <font>
+                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox layoutX="288.0" layoutY="496.0" prefHeight="36.0" prefWidth="401.0" spacing="15.0">
+               <children>
+                  <Button fx:id="clearButton" mnemonicParsing="false" onAction="#actionClear" prefHeight="36.0" prefWidth="88.0" style="-fx-background-color: #6e2b90; -fx-background-radius: 10px;" text="Очистить" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="14.0" />
+                     </font>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" offsetX="1.0" offsetY="1.0">
+                           <color>
+                              <Color red="0.5215686559677124" green="0.501960813999176" blue="0.501960813999176" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
+                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#actionDelete" prefHeight="36.0" prefWidth="88.0" style="-fx-background-color: #861e1e; -fx-background-radius: 10px;" text="Удалить" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="14.0" />
+                     </font>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" offsetX="1.0" offsetY="1.0">
+                           <color>
+                              <Color red="0.501960813999176" green="0.501960813999176" blue="0.501960813999176" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
+                  <Button fx:id="editButton" mnemonicParsing="false" onAction="#actionEdit" prefHeight="36.0" prefWidth="94.0" style="-fx-background-color: #00155e; -fx-background-radius: 10px;" text="Изменить" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="14.0" />
+                     </font>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" offsetX="1.0" offsetY="1.0">
+                           <color>
+                              <Color red="0.501960813999176" green="0.501960813999176" blue="0.501960813999176" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#actionAdd" prefHeight="36.0" prefWidth="88.0" style="-fx-background-color: #238346; -fx-background-radius: 10px;" text="Добавить" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="14.0" />
+                     </font>
+                     <effect>
+                        <DropShadow offsetX="1.0" offsetY="1.0">
+                           <color>
+                              <Color red="0.501960813999176" green="0.501960813999176" blue="0.501960813999176" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
+            <Text layoutX="312.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.0">
+               <font>
+                  <Font name="TT Intrphss Pr Trl Cnd Rg" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="600.0" prefWidth="252.0" style="-fx-background-color: #f7931e;">
+         <children>
+            <Button fx:id="exitbutton" layoutX="10.0" layoutY="556.0" minWidth="29.0" mnemonicParsing="false" onAction="#actionExitButton" prefHeight="25.0" prefWidth="29.0" style="-fx-background-radius: 10px 10px; -fx-background-color: #f7931e;" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="43.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../images/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text fill="WHITE" layoutX="23.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Добро пожаловать, " wrappingWidth="210.0">
+               <font>
+                  <Font name="TT Intrphss Pr Trl Cnd Bd" size="24.0" />
+               </font>
+            </Text>
+            <VBox layoutX="12.0" layoutY="241.0" prefHeight="313.0" prefWidth="231.0" spacing="10.0">
+               <children>
+                  <Button fx:id="houseButton" mnemonicParsing="false" onAction="#handleHouseButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Главное меню" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="clientsButton" mnemonicParsing="false" onAction="#handleClientsButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Клиенты" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="workersButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #ad691a; -fx-background-radius: 10px;" text="Сотрудники" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="serviceButton" mnemonicParsing="false" onAction="#handleServicesButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Список услуг" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="activeOrdersButton" mnemonicParsing="false" onAction="#handleActiveOrdersButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Активные заказы" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="historyOrdersButton" mnemonicParsing="false" onAction="#handleHistoryOrdersButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Архив заказов" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="storageButton" mnemonicParsing="false" onAction="#handleStorageButton" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Склад запчастей" textFill="WHITE">
+                     <font>
+                        <Font name="TT Intrphss Pr Trl Cnd Bd" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="63.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../images/User.png" />
+               </image>
+            </ImageView>
+            <Line endX="125.0" layoutX="127.0" layoutY="223.0" startX="-127.0" stroke="#595959" strokeWidth="2.0" />
+            <Label fx:id="admins_name" layoutX="22.0" layoutY="184.0" prefHeight="31.0" prefWidth="205.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="TT Intrphss Pr Trl Cnd Rg" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

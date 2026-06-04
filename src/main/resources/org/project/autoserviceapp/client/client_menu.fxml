@@ -2,32 +2,123 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.client.ClientController">
-   <right>
-      <AnchorPane prefHeight="400.0" prefWidth="179.0" BorderPane.alignment="CENTER" />
-   </right>
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
-   <left>
-      <AnchorPane prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.client.ClientController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Label layoutX="44.0" layoutY="37.0" text="AVTO67">
-               <font>
-                  <Font name="Impact" size="36.0" />
-               </font>
-            </Label>
-            <Button layoutX="34.0" layoutY="115.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #f7931e;" text="Личный кабинет" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman" size="15.0" />
-               </font>
-            </Button>
+            <BorderPane layoutX="63.0" layoutY="90.0" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="42.0" prefWidth="1000.0" style="-fx-background-color: #f7931e;" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="145.0" layoutY="-79.0" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #f7931e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="800.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="58.0" layoutY="4.0" text="AVTO67">
+                                 <font>
+                                    <Font name="Impact" size="28.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="currentPage" layoutX="501.0" layoutY="6.0" prefHeight="30.0" prefWidth="163.0" text="Каталог" AnchorPane.leftAnchor="501.0" AnchorPane.rightAnchor="338.0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f7931e;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Line endX="90.5" layoutX="105.0" layoutY="158.0" startX="-100.0" />
+                        <Button fx:id="OpenCatalog_btn" layoutX="13.0" layoutY="180.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="175.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Каталог" textFill="WHITE" />
+                        <Button fx:id="OpenMyAccount_btn" layoutX="13.0" layoutY="237.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="175.0" style="-fx-background-color: #595959; -fx-background-radius: 10px;" text="Личный кабинет" textFill="WHITE" />
+                        <Label fx:id="CurrentDateMyAccount" layoutX="12.0" layoutY="98.0" text="DD:MM:YYYY">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="12.0" layoutY="21.0" text="Добро пожаловать,">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="usernameMyAccount" layoutX="12.0" layoutY="60.0" prefHeight="20.0" prefWidth="133.0" text="Username">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Line endX="90.5" layoutX="105.0" startX="-100.0" />
+                        <Button fx:id="userLogout_btn" layoutX="13.0" layoutY="506.0" mnemonicParsing="false" onAction="#userLogout" prefHeight="35.0" prefWidth="62.0" style="-fx-background-color: #FF2400; -fx-background-radius: 10px;" text="Выйти" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+               </left>
+               <right>
+                  <AnchorPane prefHeight="558.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane fx:id="MyAccountForm" prefHeight="558.0" prefWidth="802.0">
+                           <children>
+                              <AnchorPane layoutX="21.0" layoutY="18.0" prefHeight="523.0" prefWidth="750.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0); -fx-background-color: #fff;">
+                                 <children>
+                                    <Label layoutX="220.0" layoutY="23.0" text="Редактировать профиль">
+                                       <font>
+                                          <Font size="28.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="240.0" layoutY="103.0" text="Имя*">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="240.0" layoutY="166.0" text="Фамилия*">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="240.0" layoutY="229.0" text="Почта*">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="242.0" layoutY="291.0" text="Пароль">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="prof_name_textarea" layoutX="240.0" layoutY="138.0" prefHeight="25.0" prefWidth="300.0" />
+                                    <TextField fx:id="prof_family_textarea" layoutX="240.0" layoutY="201.0" prefHeight="25.0" prefWidth="300.0" />
+                                    <TextField fx:id="prof_email_textarea" layoutX="240.0" layoutY="263.0" prefHeight="25.0" prefWidth="300.0" />
+                                    <TextField fx:id="prof_password_textarea" layoutX="240.0" layoutY="326.0" prefHeight="25.0" prefWidth="300.0" />
+                                    <Button fx:id="profileUpdate_btn" layoutX="322.0" layoutY="388.0" mnemonicParsing="false" onAction="#profileUpdate" prefHeight="39.0" prefWidth="108.0" style="-fx-background-color: #00155e; -fx-background-radius: 10px;" text="Обновить" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font></Button>
+                                    <Label fx:id="profileErrorMessage" layoutX="238.0" layoutY="443.0" prefHeight="17.0" prefWidth="303.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="profileSuccessMessage" layoutX="239.0" layoutY="443.0" prefHeight="17.0" prefWidth="303.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="CatalogForm" layoutX="200.0" layoutY="98.0" prefHeight="558.0" prefWidth="802.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
+               </right>
+            </BorderPane>
          </children>
       </AnchorPane>
-   </left>
-</BorderPane>
+   </children>
+</StackPane>
