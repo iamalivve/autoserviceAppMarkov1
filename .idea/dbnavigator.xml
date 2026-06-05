@@ -11,52 +11,58 @@
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
     <assistants>
-      <assistant-state connection-id="0e087b88-953b-45d5-813f-adafd0e42ea6" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="a25deff7-bbd7-4e58-aae7-cbfcd4ee40b8" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
+        <tools />
+      </assistant-state>
+      <assistant-state connection-id="a25deff7-bbd7-4e58-aae7-cbfcd4ee40b8" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
       <assistant-state connection-id="0e087b88-953b-45d5-813f-adafd0e42ea6" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
       </assistant-state>
-      <assistant-state connection-id="26e65c3e-efad-41d8-82ef-5bba093944ad" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="0e087b88-953b-45d5-813f-adafd0e42ea6" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
       <assistant-state connection-id="26e65c3e-efad-41d8-82ef-5bba093944ad" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
       </assistant-state>
-      <assistant-state connection-id="23c64579-6e45-4883-a5e3-156ce6b99cc0" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="26e65c3e-efad-41d8-82ef-5bba093944ad" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
       <assistant-state connection-id="23c64579-6e45-4883-a5e3-156ce6b99cc0" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
       </assistant-state>
-      <assistant-state connection-id="3397814d-f16f-4f36-8d88-6ad95b65520c" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="23c64579-6e45-4883-a5e3-156ce6b99cc0" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
       <assistant-state connection-id="3397814d-f16f-4f36-8d88-6ad95b65520c" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
       </assistant-state>
-      <assistant-state connection-id="10421b7d-90e8-45a7-9481-4d81055987cf" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="3397814d-f16f-4f36-8d88-6ad95b65520c" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
       <assistant-state connection-id="10421b7d-90e8-45a7-9481-4d81055987cf" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
       </assistant-state>
-      <assistant-state connection-id="418c8e00-85df-4e3a-8e0b-fbf0b4f81fff" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="10421b7d-90e8-45a7-9481-4d81055987cf" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
       <assistant-state connection-id="418c8e00-85df-4e3a-8e0b-fbf0b4f81fff" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
       </assistant-state>
-      <assistant-state connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="418c8e00-85df-4e3a-8e0b-fbf0b4f81fff" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
       <assistant-state connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
         <tools />
       </assistant-state>
-      <assistant-state connection-id="c20e07ac-d75f-494a-8e7d-1e8197872d76" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
       <assistant-state connection-id="c20e07ac-d75f-494a-8e7d-1e8197872d76" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
+        <tools />
+      </assistant-state>
+      <assistant-state connection-id="c20e07ac-d75f-494a-8e7d-1e8197872d76" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
     </assistants>
@@ -71,37 +77,24 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="61817f49-5a64-4287-b871-c2d0a6bd8c3b">
-      <console name="autoserviceApp" type="STANDARD" schema="main" session="Main"><![CDATA[select * from "Service"]]></console>
+    <connection id="a25deff7-bbd7-4e58-aae7-cbfcd4ee40b8">
+      <console name="AppService" type="STANDARD" schema="main" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Client" />
-      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="consoles/autoserviceApp" />
-      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Service" />
-      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Admin" />
-      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Orders" />
-      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Storage" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabasePrerequisiteManager">
     <prerequisites />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" />
+    <connection id="a25deff7-bbd7-4e58-aae7-cbfcd4ee40b8" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Orders" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Admin" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Service" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.sqlite_sequence" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Storage" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Client" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Worker" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a25deff7-bbd7-4e58-aae7-cbfcd4ee40b8" dataset="main.Service" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -120,9 +113,9 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection source-id="" id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" active="true" signed="true">
+      <connection source-id="" id="a25deff7-bbd7-4e58-aae7-cbfcd4ee40b8" active="true" signed="true">
         <database>
-          <name value="autoserviceApp" />
+          <name value="AppService" />
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
@@ -140,7 +133,7 @@
           <protocol value="" />
           <url-parameters />
           <files>
-            <file path="C:\Users\kiril\IdeaProjects\autoserviceApp\autoserviceApp.db" schema="main" />
+            <file path="C:\Users\maksi\IdeaProjects\serviceApp\autoserviceApp.db" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />
@@ -177,7 +170,7 @@
           <session-management value="true" />
           <ddl-file-binding value="true" />
           <database-logging value="true" />
-          <connect-automatically value="false" />
+          <connect-automatically value="true" />
           <restore-workspace value="true" />
           <restore-workspace-deep value="false" />
           <environment-type value="default" />
@@ -388,19 +381,13 @@
           <content-type name="DTD" enabled="true" />
           <content-type name="HTML" enabled="true" />
           <content-type name="XHTML" enabled="true" />
-          <content-type name="CSS" enabled="true" />
           <content-type name="Java" enabled="true" />
           <content-type name="SQL" enabled="true" />
           <content-type name="PL/SQL" enabled="true" />
           <content-type name="JPA QL" enabled="true" />
-          <content-type name="JavaScript" enabled="true" />
           <content-type name="JSON" enabled="true" />
           <content-type name="JSON5" enabled="true" />
-          <content-type name="JSP" enabled="true" />
-          <content-type name="JSPx" enabled="true" />
           <content-type name="Groovy" enabled="true" />
-          <content-type name="FTL" enabled="true" />
-          <content-type name="VTL" enabled="true" />
           <content-type name="YAML" enabled="true" />
           <content-type name="Manifest" enabled="true" />
         </content-types>

@@ -3,7 +3,9 @@ package org.project.autoserviceapp.admin.DB;
 import org.project.autoserviceapp.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Order {
     private int order_id;
@@ -168,5 +170,32 @@ public class Order {
             e.printStackTrace();
             return false;
         }
+    }
+
+    //Сбор информации для статистики в контроллере "Главная страница"
+    public static Map<String, Double> getMonthlySalesData() {
+        Map<String, Double> data = new LinkedHashMap<>();
+        String sql = "SELECT strftime('%m.%Y', orderEndDate) as month, SUM(totalPrice) as total " + "FROM Orders WHERE order_status = 'Готов' AND orderEndDate IS NOT NULL " + "GROUP BY month ORDER BY orderEndDate";
+
+        DatabaseConnection dbConn = new DatabaseConnection();
+        try (Connection conn = dbConn.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                String month = rs.getString("month");
+                double total = rs.getDouble("total");
+
+                if (month != null && !month.isEmpty()) {
+                    data.put(month, total);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (data.isEmpty()) {
+            data.put("Нет данных", 0.0);
+        }
+        return data;
     }
 }
