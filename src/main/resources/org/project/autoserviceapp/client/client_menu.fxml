@@ -69,7 +69,7 @@
                      <children>
                         <AnchorPane fx:id="MyAccountForm" prefHeight="558.0" prefWidth="802.0">
                            <children>
-                              <AnchorPane layoutX="11.0" layoutY="10.0" prefHeight="529.0" prefWidth="776.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0); -fx-background-color: #fff;" visible="false">
+                              <AnchorPane layoutX="11.0" layoutY="10.0" prefHeight="529.0" prefWidth="776.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0); -fx-background-color: #fff;">
                                  <children>
                                     <Label layoutX="233.0" layoutY="20.0" text="Редактировать профиль">
                                        <font>
@@ -141,7 +141,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="CatalogForm" prefHeight="558.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="CatalogForm" prefHeight="558.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="22.0" prefHeight="500.0" prefWidth="450.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0); -fx-background-color: #fff;" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="322.0" AnchorPane.topAnchor="29.0">
                                  <children>

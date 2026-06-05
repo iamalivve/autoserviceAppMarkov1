@@ -95,7 +95,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="600.0" prefWidth="252.0" style="-fx-background-color: #f7931e;">
          <children>
-            <Text fill="WHITE" layoutX="23.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Добро пожаловать, " wrappingWidth="210.0">
+            <Text fill="WHITE" layoutX="23.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Добро пожаловать, " wrappingWidth="230.0">
                <font>
                   <Font name="TT Intrphss Pr Trl Cnd Bd" size="24.0" />
                </font>
