@@ -15,7 +15,9 @@ public class ServiceCardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
-
+        if (cardAddButton != null) {
+            cardAddButton.setOnAction(event -> addToSelectedServices());
+        }
     }
 
     @FXML
@@ -33,6 +35,8 @@ public class ServiceCardController implements Initializable {
     @FXML
     private Label cardServiceName;
 
+    private ClientController clientController;
+
     private getService getS;
 
     private Image image;
@@ -46,6 +50,7 @@ public class ServiceCardController implements Initializable {
     private String path;
 
     public void setData(getService getS){
+        this.getS = getS;
         id = getS.getId();
         serviceName = getS.getServiceName();
         storageId = getS.getStorageId();
@@ -59,5 +64,15 @@ public class ServiceCardController implements Initializable {
 
         image = new Image(path, 200, 124, false, true);
         cardImageView.setImage(image);
+    }
+
+    public void setClientController(ClientController controller) {
+        this.clientController = controller;
+    }
+
+    private void addToSelectedServices() {
+        if (clientController != null && getS != null) {  // Проверяем, что getS не null
+            clientController.addServiceToOrder(this.getS);
+        }
     }
 }

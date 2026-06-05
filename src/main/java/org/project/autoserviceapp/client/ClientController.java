@@ -12,9 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 
@@ -28,6 +26,11 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 
 public class ClientController implements Initializable {
 
@@ -94,6 +97,24 @@ public class ClientController implements Initializable {
     private String clientFamily;
 
     private String currentStoredPassword; // Хранит текущий пароль из БД
+
+    @FXML
+    private ScrollPane selectedServicesScrollPane;
+
+    @FXML
+    private Label totalServicesLabel;
+
+    @FXML
+    private Label totalPriceLabel;
+
+    @FXML
+    private Button confirmOrderBtn;
+
+    @FXML
+    private Button clearOrderBtn;
+
+    private ObservableList<getService> selectedServices = FXCollections.observableArrayList();
+    private VBox selectedServicesContainer;
 
     public void setUserCredentials(String login, String password) {
         this.currentLogin = login;
@@ -359,6 +380,7 @@ public class ClientController implements Initializable {
 
                 ServiceCardController serviceCC = load.getController();
                 serviceCC.setData(listD.get(i));
+                serviceCC.setClientController(this); // Передаем ссылку на ClientController
 
                 if (column == 2){
                     column = 0;
@@ -395,6 +417,116 @@ public class ClientController implements Initializable {
         }
     }
 
+    private void initializeSelectedServicesContainer() {
+        selectedServicesContainer = new VBox(10);
+        selectedServicesContainer.setPadding(new Insets(10));
+        selectedServicesScrollPane.setContent(selectedServicesContainer);
+        selectedServicesScrollPane.setFitToWidth(true);
+    }
+
+    // метод для добавления услуги в заказ:
+    public void addServiceToOrder(getService service) {
+        // Проверяем, не добавлена ли уже эта услуга
+        for (getService existing : selectedServices) {
+            if (existing.getId().equals(service.getId())) {
+                showTemporaryMessage("Эта услуга уже добавлена в заказ!");
+                return;
+            }
+        }
+
+        selectedServices.add(service);
+        updateSelectedServicesDisplay();
+    }
+
+    // метод для обновления отображения выбранных услуг:
+    private void updateSelectedServicesDisplay() {
+        if (selectedServicesContainer == null) {
+            initializeSelectedServicesContainer();
+        }
+
+        selectedServicesContainer.getChildren().clear();
+
+
+        double totalPrice = 0;
+        int totalCount = 0;
+
+        for (getService service : selectedServices) {
+            totalCount++;
+            totalPrice += service.getServicePrice();
+
+            HBox serviceRow = createServiceRow(service);
+            selectedServicesContainer.getChildren().add(serviceRow);
+        }
+
+        totalServicesLabel.setText(String.valueOf(totalCount));
+        totalPriceLabel.setText(String.format("%.2f руб.", totalPrice));
+    }
+
+    // Создание строки для отображения услуги в списке
+    private HBox createServiceRow(getService service) {
+        HBox row = new HBox(10);
+        row.setStyle("-fx-padding: 5; -fx-background-color: #f5f5f5; -fx-background-radius: 5;");
+        row.setPrefHeight(40);
+
+        Label nameLabel = new Label(service.getServiceName());
+        nameLabel.setStyle("-fx-font-size: 14px;");
+        nameLabel.setPrefWidth(120);
+
+        Label priceLabel = new Label(String.format("%.2f руб.", service.getServicePrice()));
+        priceLabel.setStyle("-fx-font-size: 14px;");
+        priceLabel.setPrefWidth(80);
+
+        Button removeButton = new Button("");
+        removeButton.setStyle("-fx-background-color: #FF2400; -fx-text-fill: white; -fx-background-radius: 3; -fx-cursor: hand;");
+        removeButton.setPrefWidth(30);
+        removeButton.setOnAction(e -> removeServiceFromOrder(service));
+
+        HBox.setHgrow(nameLabel, Priority.ALWAYS);
+
+        row.getChildren().addAll(nameLabel, priceLabel, removeButton);
+        return row;
+    }
+
+    // Удаление услуги из заказа
+    private void removeServiceFromOrder(getService service) {
+        selectedServices.remove(service);
+        updateSelectedServicesDisplay();
+    }
+
+    // Очистка всего заказа
+    @FXML
+    private void clearOrder() {
+        selectedServices.clear();
+        updateSelectedServicesDisplay();
+    }
+
+    // Подтверждение заказа
+    @FXML
+    private void confirmOrder() {
+        if (selectedServices.isEmpty()) {
+            return;
+        }
+
+        // логику сохранения заказа в базу данных
+        showTemporaryMessage("Заказ подтвержден!");
+    }
+
+    private void showTemporaryMessage(String message) {
+        Label tempMessage = new Label(message);
+        tempMessage.setStyle("-fx-background-color: #333; -fx-text-fill: white; -fx-padding: 5 10 5 10; -fx-background-radius: 5;");
+
+        if (selectedServicesContainer != null && selectedServicesContainer.getParent() != null) {
+            // Добавляем сообщение в контейнер на время
+            selectedServicesContainer.getChildren().add(0, tempMessage);
+
+            javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(2));
+            delay.setOnFinished(event -> selectedServicesContainer.getChildren().remove(tempMessage));
+            delay.play();
+        }
+    }
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources){
         if (CurrentDateMyAccount != null) {
@@ -415,6 +547,17 @@ public class ClientController implements Initializable {
 
         if (profileSuccessMessage != null) {
             profileSuccessMessage.setText("");
+        }
+
+        initializeSelectedServicesContainer();
+
+        // Настройка кнопок заказа
+        if (confirmOrderBtn != null) {
+            confirmOrderBtn.setOnAction(event -> confirmOrder());
+        }
+
+        if (clearOrderBtn != null) {
+            clearOrderBtn.setOnAction(event -> clearOrder());
         }
 
         orderDisplayCard();

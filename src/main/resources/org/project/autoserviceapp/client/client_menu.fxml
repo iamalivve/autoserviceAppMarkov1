@@ -69,7 +69,7 @@
                      <children>
                         <AnchorPane fx:id="MyAccountForm" prefHeight="558.0" prefWidth="802.0">
                            <children>
-                              <AnchorPane layoutX="11.0" layoutY="10.0" prefHeight="529.0" prefWidth="776.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0); -fx-background-color: #fff;">
+                              <AnchorPane layoutX="11.0" layoutY="10.0" prefHeight="529.0" prefWidth="776.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0); -fx-background-color: #fff;" visible="false">
                                  <children>
                                     <Label layoutX="233.0" layoutY="20.0" text="Редактировать профиль">
                                        <font>
@@ -141,16 +141,16 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="CatalogForm" prefHeight="558.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="CatalogForm" prefHeight="558.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="22.0" prefHeight="500.0" prefWidth="450.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0); -fx-background-color: #fff;" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="322.0" AnchorPane.topAnchor="29.0">
                                  <children>
                                     <ScrollPane fx:id="orderScrollPane" layoutX="14.0" layoutY="53.0" prefHeight="447.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
                                        <content>
                                           <GridPane fx:id="orderGridPane" prefHeight="20.0" prefWidth="63.0">
-                                            <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
-                                            </columnConstraints>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
+                                             </columnConstraints>
                                           </GridPane>
                                        </content>
                                     </ScrollPane>
@@ -159,8 +159,44 @@
                                           <Font size="32.0" />
                                        </font>
                                     </Label>
+                                    <Line endX="100.0" layoutX="225.0" layoutY="50.0" startX="-100.0" />
                                  </children></AnchorPane>
-                              <AnchorPane layoutX="308.0" layoutY="25.0" prefHeight="500.0" prefWidth="244.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0); -fx-background-color: #fff;" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="508.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="29.0" />
+                              <AnchorPane layoutX="488.0" layoutY="25.0" prefHeight="500.0" prefWidth="310.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0); -fx-background-color: #fff;" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="488.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="29.0">
+                                 <children>
+                                    <Label layoutX="59.0" text="Детали заказа">
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="100.0" layoutX="155.0" layoutY="47.0" startX="-100.0" />
+                                    <Label layoutX="32.0" layoutY="373.0" text="Количество:">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="selectedServicesScrollPane" layoutX="8.0" layoutY="68.0" prefHeight="300.0" prefWidth="270.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="293.0" />
+                                       </content>
+                                    </ScrollPane>
+                                    <Label fx:id="totalServicesLabel" layoutX="148.0" layoutY="373.0" text="sum">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="32.0" layoutY="403.0" text="Итог:">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalPriceLabel" layoutX="84.0" layoutY="403.0" text="руб">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="confirmOrderBtn" layoutX="32.0" layoutY="449.0" mnemonicParsing="false" text="Подтвердить" />
+                                    <Button fx:id="clearOrderBtn" layoutX="142.0" layoutY="449.0" mnemonicParsing="false" text="Очистить" />
+                                 </children></AnchorPane>
                            </children></AnchorPane>
                      </children></AnchorPane>
                </right>
