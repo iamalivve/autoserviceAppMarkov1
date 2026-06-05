@@ -1,5 +1,6 @@
 package org.project.autoserviceapp.client;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,29 +9,21 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
-
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.project.autoserviceapp.DatabaseConnection;
 
-import java.awt.*;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
-
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 
 public class ClientController implements Initializable {
 
@@ -45,9 +38,6 @@ public class ClientController implements Initializable {
 
     @FXML
     private Button userLogout;
-
-    @FXML
-    private Circle top_profile;
 
     @FXML
     private AnchorPane CatalogForm;
@@ -91,13 +81,6 @@ public class ClientController implements Initializable {
     @FXML
     private Label profileSuccessMessage;
 
-    private String currentLogin;
-    private String currentPassword;
-    private String clientName;
-    private String clientFamily;
-
-    private String currentStoredPassword; // Хранит текущий пароль из БД
-
     @FXML
     private ScrollPane selectedServicesScrollPane;
 
@@ -113,8 +96,22 @@ public class ClientController implements Initializable {
     @FXML
     private Button clearOrderBtn;
 
+    private String currentLogin;
+    private String currentPassword;
+    private String clientName;
+    private String clientFamily;
+    private String currentStoredPassword;
+    private int clientId;
+
     private ObservableList<getService> selectedServices = FXCollections.observableArrayList();
     private VBox selectedServicesContainer;
+
+    // Храним соответствие услуги и запчасти, а также исходное количество для восстановления
+    private Map<Integer, Integer> serviceStorageMap = new HashMap<>();
+    private Map<Integer, Integer> originalStorageQuantities = new HashMap<>();
+    private Map<Integer, Integer> serviceQuantityMap = new HashMap<>(); // Сколько единиц запчасти нужно для услуги
+
+    private final ObservableList<getService> listD = FXCollections.observableArrayList();
 
     public void setUserCredentials(String login, String password) {
         this.currentLogin = login;
@@ -124,19 +121,20 @@ public class ClientController implements Initializable {
 
     private void loadUserData() {
         Connection connectDB = null;
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet queryResult = null;
 
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
             connectDB = connectNow.getConnection();
 
-            String query = "SELECT client_name, client_family, client_email, client_password FROM Client WHERE client_login = '" + currentLogin + "'";
-
-            statement = connectDB.createStatement();
-            queryResult = statement.executeQuery(query);
+            String query = "SELECT client_id, client_name, client_family, client_email, client_password FROM Client WHERE client_login = ?";
+            preparedStatement = connectDB.prepareStatement(query);
+            preparedStatement.setString(1, currentLogin);
+            queryResult = preparedStatement.executeQuery();
 
             if (queryResult.next()) {
+                clientId = queryResult.getInt("client_id");
                 clientName = queryResult.getString("client_name");
                 clientFamily = queryResult.getString("client_family");
                 String email = queryResult.getString("client_email");
@@ -170,18 +168,11 @@ public class ClientController implements Initializable {
         } finally {
             try {
                 if (queryResult != null) queryResult.close();
-                if (statement != null) statement.close();
+                if (preparedStatement != null) preparedStatement.close();
                 if (connectDB != null) connectDB.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    public void setUserName(String userName) {
-        this.clientName = userName;
-        if (usernameMyAccount != null) {
-            usernameMyAccount.setText(userName);
         }
     }
 
@@ -207,7 +198,6 @@ public class ClientController implements Initializable {
     }
 
     public void profileUpdate() {
-        // Очищаем предыдущее сообщение
         if (profileErrorMessage != null) {
             profileErrorMessage.setText("");
         }
@@ -216,52 +206,43 @@ public class ClientController implements Initializable {
             profileSuccessMessage.setText("");
         }
 
-        // Получаем новые значения из текстовых полей
         String newName = prof_name_textarea.getText().trim();
         String newFamily = prof_family_textarea.getText().trim();
         String newEmail = prof_email_textarea.getText().trim();
         String newPassword = prof_password_field.getText().trim();
         String newPasswordConf = prof_confirmPassword_field.getText().trim();
 
-        // Проверка на пустые поля
         if (newName.isEmpty() || newFamily.isEmpty() || newEmail.isEmpty()) {
             profileErrorMessage.setText("Заполните все обязательные поля!");
             profileErrorMessage.setTextFill(Color.RED);
             return;
         }
 
-        // Проверка email на валидность
         if (!newEmail.contains("@") || !newEmail.contains(".")) {
             profileErrorMessage.setText("Ошибка. Введите корректный email адрес!");
             profileErrorMessage.setTextFill(Color.RED);
             return;
         }
 
-        if (!newPassword.isEmpty() || !newPassword.isEmpty()) {
-            // Если одно из полей пароля заполнено, проверяем все условия
-
-            // Проверка, что старый пароль совпадает с паролем в БД
+        if (!newPassword.isEmpty()) {
             if (newPassword.equals(currentStoredPassword)) {
                 profileErrorMessage.setText("Пароль совпадает со старым!");
                 profileErrorMessage.setTextFill(Color.RED);
                 return;
             }
 
-            // Проверка сложности пароля (минимальная длина)
             if (newPassword.length() < 4) {
                 profileErrorMessage.setText("Новый пароль должен содержать не менее 4 символов!");
                 profileErrorMessage.setTextFill(Color.RED);
                 return;
             }
 
-            // Проверка, что пароли совпадают
             if (!newPassword.equals(newPasswordConf)) {
                 profileErrorMessage.setText("Пароли не совпадают!");
                 profileErrorMessage.setTextFill(Color.RED);
                 return;
             }
-        }else {
-            // Если поля пароля пустые, используем старый пароль из БД
+        } else {
             newPassword = currentStoredPassword;
         }
         currentStoredPassword = newPassword;
@@ -285,22 +266,18 @@ public class ClientController implements Initializable {
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
-                // Обновляем локальные переменные
                 clientName = newName;
                 clientFamily = newFamily;
 
-                // Обновляем отображение имени в боковой панели
                 if (usernameMyAccount != null) {
                     usernameMyAccount.setText(clientName);
                 }
 
-                // Показываем сообщение об успешном обновлении
                 if (profileSuccessMessage != null) {
                     profileSuccessMessage.setText("Профиль успешно обновлен!");
                     profileSuccessMessage.setTextFill(Color.GREEN);
                 }
 
-                // Очищаем поле пароля после успешного обновления
                 if (prof_password_field != null) {
                     prof_password_field.setText("");
                 }
@@ -308,7 +285,6 @@ public class ClientController implements Initializable {
                 if (prof_confirmPassword_field != null) {
                     prof_confirmPassword_field.setText("");
                 }
-
             }
 
         } catch (Exception e) {
@@ -325,42 +301,381 @@ public class ClientController implements Initializable {
         }
     }
 
-    private final ObservableList<getService> listD = FXCollections.observableArrayList();
-
     public ObservableList<getService> orderGetData(){
-
         ObservableList<getService> listData = FXCollections.observableArrayList();
-
         Connection connectDB = null;
-        Statement statement = null;
+        PreparedStatement statement = null;
         ResultSet queryResult = null;
 
         try {
-            String sql = "SELECT * FROM service";
-
+            String sql = "SELECT service_id, service_name, storage_id, service_deadlines, service_price, Image FROM service";
             DatabaseConnection connectNow = new DatabaseConnection();
             connectDB = connectNow.getConnection();
-
-            statement = connectDB.createStatement();
-            queryResult = statement.executeQuery(sql);
-
-            getService getS;
+            statement = connectDB.prepareStatement(sql);
+            queryResult = statement.executeQuery();
 
             while (queryResult.next()){
-                getS = new getService(queryResult.getInt("service_id"), queryResult.getString("service_name"),
-                        queryResult.getInt("storage_id"), queryResult.getString("service_deadlines"),
-                        queryResult.getDouble("service_price"), queryResult.getString("Image"));
-
+                getService getS = new getService(
+                        queryResult.getInt("service_id"),
+                        queryResult.getString("service_name"),
+                        queryResult.getInt("storage_id"),
+                        queryResult.getString("service_deadlines"),
+                        queryResult.getDouble("service_price"),
+                        queryResult.getString("Image")
+                );
                 listData.add(getS);
+                serviceStorageMap.put(queryResult.getInt("service_id"), queryResult.getInt("storage_id"));
+                serviceQuantityMap.put(queryResult.getInt("service_id"), 1); // По умолчанию 1 запчасть на услугу
             }
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
+        } finally {
+            try {
+                if (queryResult != null) queryResult.close();
+                if (statement != null) statement.close();
+                if (connectDB != null) connectDB.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return listData;
     }
 
-    public void orderDisplayCard(){
+    // Получение текущего количества запчасти на складе
+    private int getStorageQuantity(int storageId) {
+        Connection connectDB = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
+        try {
+            DatabaseConnection connectNow = new DatabaseConnection();
+            connectDB = connectNow.getConnection();
+            String query = "SELECT storage_sum FROM Storage WHERE storage_id = ?";
+            preparedStatement = connectDB.prepareStatement(query);
+            preparedStatement.setInt(1, storageId);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getInt("storage_sum");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connectDB != null) connectDB.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
+
+    // Обновление количества запчасти на складе
+    private boolean updateStorageQuantity(int storageId, int newQuantity) {
+        Connection connectDB = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            DatabaseConnection connectNow = new DatabaseConnection();
+            connectDB = connectNow.getConnection();
+            String query = "UPDATE Storage SET storage_sum = ? WHERE storage_id = ?";
+            preparedStatement = connectDB.prepareStatement(query);
+            preparedStatement.setInt(1, newQuantity);
+            preparedStatement.setInt(2, storageId);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+                if (connectDB != null) connectDB.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // Получение следующего номера заказа
+    private int getNextOrderNumber() {
+        Connection connectDB = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            DatabaseConnection connectNow = new DatabaseConnection();
+            connectDB = connectNow.getConnection();
+            String query = "SELECT MAX(order_number) as max_num FROM orders";
+            statement = connectDB.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            if (resultSet.next()) {
+                int maxNum = resultSet.getInt("max_num");
+                return maxNum + 1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (connectDB != null) connectDB.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return 1001;
+    }
+
+    // Сохранение заказа в БД
+    private boolean saveOrderToDatabase() {
+        Connection connectDB = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            DatabaseConnection connectNow = new DatabaseConnection();
+            connectDB = connectNow.getConnection();
+            connectDB.setAutoCommit(false);
+
+            int orderNum = getNextOrderNumber();
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            String orderDate = currentDate.format(formatter);
+
+            // Расчет максимального срока выполнения
+            int maxDays = 0;
+            for (getService service : selectedServices) {
+                String deadline = service.getServiceDeadlines();
+                int days = Integer.parseInt(deadline.split(" ")[0]);
+                if (days > maxDays) maxDays = days;
+            }
+            LocalDate endDate = currentDate.plusDays(maxDays);
+            String orderEndDate = endDate.format(formatter);
+
+            double totalPrice = 0;
+            for (getService service : selectedServices) {
+                totalPrice += service.getServicePrice();
+            }
+
+            // Для каждой услуги создаем отдельный заказ (если в orders есть service_id)
+            for (getService service : selectedServices) {
+                String orderQuery = "INSERT INTO orders (client_id, order_number, service_id, order_status, orderDate, orderEndDate, totalPrice) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                preparedStatement = connectDB.prepareStatement(orderQuery);
+                preparedStatement.setInt(1, clientId);
+                preparedStatement.setInt(2, orderNum);
+                preparedStatement.setInt(3, service.getId()); // Добавляем service_id
+                preparedStatement.setString(4, "В обработке");
+                preparedStatement.setString(5, orderDate);
+                preparedStatement.setString(6, orderEndDate);
+                preparedStatement.setDouble(7, service.getServicePrice()); // Цена за одну услугу
+                preparedStatement.executeUpdate();
+            }
+
+            connectDB.commit();
+            showTemporaryMessage("Заказ №" + orderNum + " подтвержден!");
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                if (connectDB != null) connectDB.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            showTemporaryMessage("Ошибка при сохранении заказа: " + e.getMessage());
+            return false;
+        } finally {
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+                if (connectDB != null) connectDB.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void addServiceToOrder(getService service) {
+        if (service == null) {
+            System.err.println("Ошибка: service равен null");
+            return;
+        }
+
+        // Проверяем, не добавлена ли уже эта услуга
+        for (getService existing : selectedServices) {
+            if (existing.getId().equals(service.getId())) {
+                showTemporaryMessage("Эта услуга уже добавлена в заказ!");
+                return;
+            }
+        }
+
+        Integer storageId = serviceStorageMap.get(service.getId());
+        if (storageId != null) {
+            // Сохраняем исходное количество, если еще не сохранили
+            if (!originalStorageQuantities.containsKey(storageId)) {
+                int currentQuantity = getStorageQuantity(storageId);
+                originalStorageQuantities.put(storageId, currentQuantity);
+            }
+
+            // Проверяем наличие запчастей
+            int currentQuantity = getStorageQuantity(storageId);
+            int requiredQuantity = serviceQuantityMap.getOrDefault(service.getId(), 1);
+
+            if (currentQuantity < requiredQuantity) {
+                showTemporaryMessage("Недостаточно запчастей для услуги: " + service.getServiceName());
+                return;
+            }
+
+            // Уменьшаем количество запчастей
+            if (updateStorageQuantity(storageId, currentQuantity - requiredQuantity)) {
+                selectedServices.add(service);
+                updateSelectedServicesDisplay();
+                showTemporaryMessage("Услуга добавлена: " + service.getServiceName());
+            } else {
+                showTemporaryMessage("Ошибка при обновлении склада");
+            }
+        } else {
+            selectedServices.add(service);
+            updateSelectedServicesDisplay();
+        }
+    }
+
+    private void removeServiceFromOrder(getService service) {
+        if (service == null) return;
+
+        // Восстанавливаем количество запчастей
+        Integer storageId = serviceStorageMap.get(service.getId());
+        if (storageId != null) {
+            int currentQuantity = getStorageQuantity(storageId);
+            int requiredQuantity = serviceQuantityMap.getOrDefault(service.getId(), 1);
+            updateStorageQuantity(storageId, currentQuantity + requiredQuantity);
+        }
+
+        selectedServices.remove(service);
+        updateSelectedServicesDisplay();
+        showTemporaryMessage("Услуга удалена: " + service.getServiceName());
+    }
+
+    @FXML
+    private void clearOrder() {
+        if (selectedServices.isEmpty()) {
+            showTemporaryMessage("Заказ пуст");
+            return;
+        }
+
+        // Восстанавливаем все запчасти
+        for (getService service : selectedServices) {
+            Integer storageId = serviceStorageMap.get(service.getId());
+            if (storageId != null) {
+                int currentQuantity = getStorageQuantity(storageId);
+                int requiredQuantity = serviceQuantityMap.getOrDefault(service.getId(), 1);
+                updateStorageQuantity(storageId, currentQuantity + requiredQuantity);
+            }
+        }
+
+        selectedServices.clear();
+        originalStorageQuantities.clear();
+        updateSelectedServicesDisplay();
+        showTemporaryMessage("Заказ очищен, запчасти возвращены на склад");
+    }
+
+    @FXML
+    private void confirmOrder() {
+        if (selectedServices.isEmpty()) {
+            showTemporaryMessage("Добавьте услуги в заказ!");
+            return;
+        }
+
+        if (saveOrderToDatabase()) {
+            selectedServices.clear();
+            originalStorageQuantities.clear();
+            updateSelectedServicesDisplay();
+        }
+    }
+
+    private void updateSelectedServicesDisplay() {
+        if (selectedServicesContainer == null) {
+            initializeSelectedServicesContainer();
+        }
+
+        selectedServicesContainer.getChildren().clear();
+
+        if (selectedServices.isEmpty()) {
+            Label emptyLabel = new Label("Нет выбранных услуг");
+            emptyLabel.setStyle("-fx-text-fill: #999; -fx-font-size: 14px;");
+            selectedServicesContainer.getChildren().add(emptyLabel);
+            totalServicesLabel.setText("0");
+            totalPriceLabel.setText("0 руб.");
+            return;
+        }
+
+        double totalPrice = 0;
+        int totalCount = 0;
+
+        for (getService service : selectedServices) {
+            if (service == null) continue;
+
+            totalCount++;
+            totalPrice += service.getServicePrice();
+
+            HBox serviceRow = createServiceRow(service);
+            selectedServicesContainer.getChildren().add(serviceRow);
+        }
+
+        totalServicesLabel.setText(String.valueOf(totalCount));
+        totalPriceLabel.setText(String.format("%.2f руб.", totalPrice));
+    }
+
+    private HBox createServiceRow(getService service) {
+        if (service == null) return new HBox();
+
+        HBox row = new HBox(10);
+        row.setStyle("-fx-padding: 5; -fx-background-color: #f5f5f5; -fx-background-radius: 5;");
+        row.setPrefHeight(40);
+
+        Label nameLabel = new Label(service.getServiceName());
+        nameLabel.setStyle("-fx-font-size: 14px;");
+        nameLabel.setPrefWidth(120);
+
+        Label priceLabel = new Label(String.format("%.2f руб.", service.getServicePrice()));
+        priceLabel.setStyle("-fx-font-size: 14px;");
+        priceLabel.setPrefWidth(80);
+
+        Button removeButton = new Button("✖");
+        removeButton.setStyle("-fx-background-color: #FF2400; -fx-text-fill: white; -fx-background-radius: 3; -fx-cursor: hand;");
+        removeButton.setPrefWidth(30);
+        removeButton.setOnAction(e -> removeServiceFromOrder(service));
+
+        HBox.setHgrow(nameLabel, Priority.ALWAYS);
+
+        row.getChildren().addAll(nameLabel, priceLabel, removeButton);
+        return row;
+    }
+
+    private void initializeSelectedServicesContainer() {
+        selectedServicesContainer = new VBox(10);
+        selectedServicesContainer.setPadding(new Insets(10));
+        selectedServicesScrollPane.setContent(selectedServicesContainer);
+        selectedServicesScrollPane.setFitToWidth(true);
+    }
+
+    private void showTemporaryMessage(String message) {
+        Label tempMessage = new Label(message);
+        tempMessage.setStyle("-fx-background-color: #333; -fx-text-fill: white; -fx-padding: 5 10 5 10; -fx-background-radius: 5;");
+
+        if (selectedServicesContainer != null && selectedServicesContainer.getParent() != null) {
+            selectedServicesContainer.getChildren().add(0, tempMessage);
+
+            PauseTransition delay = new PauseTransition(Duration.seconds(2));
+            delay.setOnFinished(event -> selectedServicesContainer.getChildren().remove(tempMessage));
+            delay.play();
+        }
+    }
+
+    public void orderDisplayCard(){
         listD.clear();
         listD.addAll(orderGetData());
 
@@ -373,14 +688,13 @@ public class ClientController implements Initializable {
             orderGridPane.getChildren().clear();
 
             for (int i = 0; i < listD.size(); i++){
-
                 FXMLLoader load = new FXMLLoader();
                 load.setLocation(getClass().getResource("/org/project/autoserviceapp/client/ServiceCard.fxml"));
                 StackPane pane = load.load();
 
                 ServiceCardController serviceCC = load.getController();
                 serviceCC.setData(listD.get(i));
-                serviceCC.setClientController(this); // Передаем ссылку на ClientController
+                serviceCC.setClientController(this);
 
                 if (column == 2){
                     column = 0;
@@ -399,11 +713,10 @@ public class ClientController implements Initializable {
                 GridPane.setMargin(pane, new Insets(10));
             }
 
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
-
 
     private void openClientLogin() {
         try {
@@ -416,116 +729,6 @@ public class ClientController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    private void initializeSelectedServicesContainer() {
-        selectedServicesContainer = new VBox(10);
-        selectedServicesContainer.setPadding(new Insets(10));
-        selectedServicesScrollPane.setContent(selectedServicesContainer);
-        selectedServicesScrollPane.setFitToWidth(true);
-    }
-
-    // метод для добавления услуги в заказ:
-    public void addServiceToOrder(getService service) {
-        // Проверяем, не добавлена ли уже эта услуга
-        for (getService existing : selectedServices) {
-            if (existing.getId().equals(service.getId())) {
-                showTemporaryMessage("Эта услуга уже добавлена в заказ!");
-                return;
-            }
-        }
-
-        selectedServices.add(service);
-        updateSelectedServicesDisplay();
-    }
-
-    // метод для обновления отображения выбранных услуг:
-    private void updateSelectedServicesDisplay() {
-        if (selectedServicesContainer == null) {
-            initializeSelectedServicesContainer();
-        }
-
-        selectedServicesContainer.getChildren().clear();
-
-
-        double totalPrice = 0;
-        int totalCount = 0;
-
-        for (getService service : selectedServices) {
-            totalCount++;
-            totalPrice += service.getServicePrice();
-
-            HBox serviceRow = createServiceRow(service);
-            selectedServicesContainer.getChildren().add(serviceRow);
-        }
-
-        totalServicesLabel.setText(String.valueOf(totalCount));
-        totalPriceLabel.setText(String.format("%.2f руб.", totalPrice));
-    }
-
-    // Создание строки для отображения услуги в списке
-    private HBox createServiceRow(getService service) {
-        HBox row = new HBox(10);
-        row.setStyle("-fx-padding: 5; -fx-background-color: #f5f5f5; -fx-background-radius: 5;");
-        row.setPrefHeight(40);
-
-        Label nameLabel = new Label(service.getServiceName());
-        nameLabel.setStyle("-fx-font-size: 14px;");
-        nameLabel.setPrefWidth(120);
-
-        Label priceLabel = new Label(String.format("%.2f руб.", service.getServicePrice()));
-        priceLabel.setStyle("-fx-font-size: 14px;");
-        priceLabel.setPrefWidth(80);
-
-        Button removeButton = new Button("");
-        removeButton.setStyle("-fx-background-color: #FF2400; -fx-text-fill: white; -fx-background-radius: 3; -fx-cursor: hand;");
-        removeButton.setPrefWidth(30);
-        removeButton.setOnAction(e -> removeServiceFromOrder(service));
-
-        HBox.setHgrow(nameLabel, Priority.ALWAYS);
-
-        row.getChildren().addAll(nameLabel, priceLabel, removeButton);
-        return row;
-    }
-
-    // Удаление услуги из заказа
-    private void removeServiceFromOrder(getService service) {
-        selectedServices.remove(service);
-        updateSelectedServicesDisplay();
-    }
-
-    // Очистка всего заказа
-    @FXML
-    private void clearOrder() {
-        selectedServices.clear();
-        updateSelectedServicesDisplay();
-    }
-
-    // Подтверждение заказа
-    @FXML
-    private void confirmOrder() {
-        if (selectedServices.isEmpty()) {
-            return;
-        }
-
-        // логику сохранения заказа в базу данных
-        showTemporaryMessage("Заказ подтвержден!");
-    }
-
-    private void showTemporaryMessage(String message) {
-        Label tempMessage = new Label(message);
-        tempMessage.setStyle("-fx-background-color: #333; -fx-text-fill: white; -fx-padding: 5 10 5 10; -fx-background-radius: 5;");
-
-        if (selectedServicesContainer != null && selectedServicesContainer.getParent() != null) {
-            // Добавляем сообщение в контейнер на время
-            selectedServicesContainer.getChildren().add(0, tempMessage);
-
-            javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(2));
-            delay.setOnFinished(event -> selectedServicesContainer.getChildren().remove(tempMessage));
-            delay.play();
-        }
-    }
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -551,7 +754,6 @@ public class ClientController implements Initializable {
 
         initializeSelectedServicesContainer();
 
-        // Настройка кнопок заказа
         if (confirmOrderBtn != null) {
             confirmOrderBtn.setOnAction(event -> confirmOrder());
         }
