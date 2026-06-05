@@ -1,12 +1,15 @@
 package org.project.autoserviceapp.admin;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import org.project.autoserviceapp.DatabaseConnection;
@@ -14,10 +17,13 @@ import org.project.autoserviceapp.admin.DB.Client;
 import org.project.autoserviceapp.admin.DB.Order;
 import org.project.autoserviceapp.admin.DB.Storage;
 
+import java.io.File;
+import java.net.URL;
 import java.sql.*;
 import java.util.Map;
+import java.util.ResourceBundle;
 
-public class AdminHomeController {
+public class AdminHomeController implements Initializable {
 
     //Статистика
     @FXML private Label clientsCountLabel;
@@ -37,8 +43,9 @@ public class AdminHomeController {
     @FXML private Button activeOrdersButton;
     @FXML private Button historyOrdersButton;
     @FXML private Button storageButton;
-    @FXML private Label admins_name;
     @FXML private Button exitbutton;
+    @FXML private Label admins_name;
+    @FXML private ImageView brandingImageView;
 
     //Переменные
     private Stage primaryStage;
@@ -57,7 +64,12 @@ public class AdminHomeController {
 
     //Предзагрузка
     @FXML
-    public void initialize() {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        File brandingFile = new File("images/User.png");
+        Image brandingImage = new Image(brandingFile.toURI().toString());
+        brandingImageView.setImage(brandingImage);
+
         loadCounts();
         loadChart();
     }
