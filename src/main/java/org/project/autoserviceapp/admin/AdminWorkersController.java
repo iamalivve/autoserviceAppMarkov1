@@ -3,17 +3,23 @@ package org.project.autoserviceapp.admin;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import org.project.autoserviceapp.admin.DB.Worker;
 
-import java.io.IOException;
+import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AdminWorkersController {
+
+public class AdminWorkersController implements Initializable {
 
     //Столбцы таблицы
     @FXML private TableView<Worker> workersTable;
@@ -54,6 +60,7 @@ public class AdminWorkersController {
     @FXML private Button storageButton;
     @FXML private Button exitbutton;
     @FXML private Label admins_name;
+    @FXML private ImageView brandingImageView;
 
     //Переменные
     private Stage primaryStage;
@@ -70,7 +77,12 @@ public class AdminWorkersController {
 
     //Предзагрузка
     @FXML
-    public void initialize() {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        File brandingFile = new File("images/User.png");
+        Image brandingImage = new Image(brandingFile.toURI().toString());
+        brandingImageView.setImage(brandingImage);
+
         colId.setCellValueFactory(new PropertyValueFactory<>("worker_id"));
         colFamily.setCellValueFactory(new PropertyValueFactory<>("worker_family"));
         colName.setCellValueFactory(new PropertyValueFactory<>("worker_name"));

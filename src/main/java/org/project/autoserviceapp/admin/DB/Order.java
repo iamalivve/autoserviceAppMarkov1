@@ -3,7 +3,9 @@ package org.project.autoserviceapp.admin.DB;
 import org.project.autoserviceapp.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Order {
     private int order_id;
@@ -168,5 +170,50 @@ public class Order {
             e.printStackTrace();
             return false;
         }
+    }
+
+    //Сбор информации для статистики в контроллере "Главная страница"
+    public static Map<String, Double> getMonthlySalesData() {
+        Map<String, Double> data = new LinkedHashMap<>();
+        String sql = "SELECT orderEndDate, totalPrice FROM Orders WHERE order_status = 'Готов' AND orderEndDate IS NOT NULL";
+
+        DatabaseConnection dbConn = new DatabaseConnection();
+        try (Connection conn = dbConn.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            Map<String, Double> tempMap = new LinkedHashMap<>();
+
+            while (rs.next()) {
+                String dateStr = rs.getString("orderEndDate");
+                double price = rs.getDouble("totalPrice");
+
+                String month = extractMonthYear(dateStr);
+                if (month != null) {
+                    tempMap.put(month, tempMap.getOrDefault(month, 0.0) + price);
+                }
+            }
+
+            //Сортируем по дате
+            tempMap.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEachOrdered(entry -> data.put(entry.getKey(), entry.getValue()));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (data.isEmpty()) {
+            data.put("Нет данных", 0.0);
+        }
+
+        return data;
+    }
+
+    //Получение даты
+    private static String extractMonthYear(String dateStr) {
+        if (dateStr == null || dateStr.isEmpty()) return null;
+
+        //Формат DD.MM.YYYY
+        if (dateStr.matches("\\d{2}\\.\\d{2}\\.\\d{4}")) { return dateStr.substring(3, 5) + "." + dateStr.substring(6, 10);}
+        return dateStr;
     }
 }

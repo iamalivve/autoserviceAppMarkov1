@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
@@ -80,19 +83,18 @@
                   <Insets />
                </opaqueInsets>
             </HBox>
+            <BarChart fx:id="salesChart" layoutX="73.0" layoutY="216.0" prefHeight="321.0" prefWidth="572.0">
+              <xAxis>
+                <CategoryAxis label="Месяц" side="BOTTOM" fx:id="xAxis" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="yAxis" label="Сумма (руб.)" side="LEFT" />
+              </yAxis>
+            </BarChart>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="600.0" prefWidth="252.0" style="-fx-background-color: #f7931e;">
          <children>
-            <Button fx:id="exitbutton" layoutX="10.0" layoutY="556.0" minWidth="29.0" mnemonicParsing="false" onAction="#actionExitButton" prefHeight="25.0" prefWidth="29.0" style="-fx-background-radius: 10px 10px; -fx-background-color: #f7931e;" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="43.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../../../images/exit.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <Text fill="WHITE" layoutX="23.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Добро пожаловать, " wrappingWidth="210.0">
                <font>
                   <Font name="TT Intrphss Pr Trl Cnd Bd" size="24.0" />
@@ -137,7 +139,7 @@
                   </Button>
                </children>
             </VBox>
-            <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="63.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="brandingImageView" fitHeight="130.0" fitWidth="130.0" layoutX="63.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../images/User.png" />
                </image>
@@ -148,6 +150,11 @@
                   <Font name="TT Intrphss Pr Trl Cnd Rg" size="24.0" />
                </font>
             </Label>
+            <Button fx:id="exitbutton" layoutX="6.0" layoutY="562.0" minWidth="29.0" mnemonicParsing="false" onAction="#actionExitButton" prefHeight="30.0" prefWidth="55.0" style="-fx-background-radius: 10px 10px; -fx-background-color: #861e1e;" text="Выход" textFill="WHITE">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75" />
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
    </children>

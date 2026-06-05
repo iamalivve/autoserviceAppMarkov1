@@ -32,11 +32,12 @@
                   <TableView fx:id="servicesTable" layoutX="7.0" layoutY="56.0" prefHeight="244.0" prefWidth="702.0" style="-fx-background-radius: 15px;">
                      <columns>
                         <TableColumn fx:id="colId" prefWidth="30.0" text="ID" />
-                        <TableColumn fx:id="colName" prefWidth="144.0" text="Название" />
-                        <TableColumn fx:id="colStorageId" prefWidth="143.0" text="Запчасть" />
-                        <TableColumn fx:id="colDeadlines" prefWidth="153.0" text="Сроки выполнения" />
-                        <TableColumn fx:id="colPrice" prefWidth="104.0" text="Цена" />
-                        <TableColumn fx:id="colWorkerId" prefWidth="127.0" text="Сотрудник" />
+                        <TableColumn fx:id="colName" prefWidth="161.0" text="Название" />
+                        <TableColumn fx:id="colStorageId" prefWidth="63.0" text="Запчасть" />
+                        <TableColumn fx:id="colDeadlines" prefWidth="131.0" text="Сроки выполнения" />
+                        <TableColumn fx:id="colPrice" prefWidth="77.0" text="Цена" />
+                        <TableColumn fx:id="colWorkerId" prefWidth="78.0" text="Сотрудник" />
+                        <TableColumn fx:id="colImage" prefWidth="161.0" text="Изображение услуги" />
                      </columns>
                   </TableView>
                </children>
@@ -125,7 +126,7 @@
                   </Button>
                </children>
             </HBox>
-            <VBox alignment="TOP_RIGHT" layoutX="348.0" layoutY="325.0" prefHeight="145.0" prefWidth="117.0" spacing="17.0">
+            <VBox alignment="TOP_RIGHT" layoutX="335.0" layoutY="325.0" prefHeight="145.0" prefWidth="130.0" spacing="17.0">
                <children>
                   <Label prefHeight="23.0" prefWidth="49.0" text="Цена:">
                      <font>
@@ -137,26 +138,29 @@
                         <Font name="TT Interphases Pro Trl Rg" size="18.0" />
                      </font>
                   </Label>
+                  <Label prefHeight="23.0" prefWidth="122.0" text="Изображение:">
+                     <font>
+                        <Font name="TT Interphases Pro Trl Rg" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
-            <VBox layoutX="478.0" layoutY="325.0" prefHeight="65.0" prefWidth="154.0" spacing="15.0">
+            <VBox layoutX="478.0" layoutY="325.0" prefHeight="145.0" prefWidth="154.0" spacing="15.0">
                <children>
                   <TextField fx:id="priceField" prefHeight="25.0" prefWidth="154.0" />
                   <TextField fx:id="workerIdField" prefHeight="25.0" prefWidth="154.0" />
+                  <Label fx:id="imageLabel" prefHeight="25.0" prefWidth="165.0" text=" Файл не выбран" />
+                  <Button fx:id="chooseImageButton" mnemonicParsing="false" onAction="#chooseImage" prefHeight="20.0" prefWidth="154.0" text="Выбрать изображение" />
                </children>
             </VBox>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="600.0" prefWidth="252.0" style="-fx-background-color: #f7931e;">
          <children>
-            <Button fx:id="exitbutton" layoutX="9.0" layoutY="560.0" minWidth="29.0" mnemonicParsing="false" onAction="#actionExitButton" prefHeight="25.0" prefWidth="29.0" style="-fx-background-radius: 10px 10px; -fx-background-color: #f7931e;" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="43.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../../../images/exit.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
+            <Button fx:id="exitbutton" layoutX="6.0" layoutY="562.0" minWidth="29.0" mnemonicParsing="false" onAction="#actionExitButton" prefHeight="30.0" prefWidth="55.0" style="-fx-background-radius: 10px 10px; -fx-background-color: #861e1e;" text="Выход" textFill="WHITE">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75" />
+               </effect>
             </Button>
             <Text fill="WHITE" layoutX="23.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Добро пожаловать, " wrappingWidth="210.0">
                <font>
@@ -202,7 +206,7 @@
                   </Button>
                </children>
             </VBox>
-            <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="63.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="brandingImageView" fitHeight="130.0" fitWidth="130.0" layoutX="63.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../images/User.png" />
                </image>

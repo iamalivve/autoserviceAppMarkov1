@@ -3,16 +3,22 @@ package org.project.autoserviceapp.admin;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import org.project.autoserviceapp.admin.DB.Storage;
-import java.io.IOException;
 
-public class AdminStorageController {
+import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AdminStorageController implements Initializable {
 
     //Столбцы таблицы
     @FXML private TableView<Storage> storageTable;
@@ -43,6 +49,7 @@ public class AdminStorageController {
     @FXML private Button storageButton;
     @FXML private Button exitbutton;
     @FXML private Label admins_name;
+    @FXML private ImageView brandingImageView;
 
     //Переменные
     private Stage primaryStage;
@@ -59,7 +66,12 @@ public class AdminStorageController {
 
     //Предзагрузка
     @FXML
-    public void initialize() {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        File brandingFile = new File("images/User.png");
+        Image brandingImage = new Image(brandingFile.toURI().toString());
+        brandingImageView.setImage(brandingImage);
+
         colId.setCellValueFactory(new PropertyValueFactory<>("storage_id"));
         colType.setCellValueFactory(new PropertyValueFactory<>("storage_type"));
         colSum.setCellValueFactory(new PropertyValueFactory<>("storage_sum"));

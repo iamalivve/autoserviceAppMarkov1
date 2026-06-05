@@ -2,17 +2,21 @@ package org.project.autoserviceapp.admin;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import org.project.autoserviceapp.admin.DB.Service;
-import java.io.IOException;
 
-public class AdminServiceController {
+import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AdminServiceController implements Initializable {
 
     //Столбцы таблицы
     @FXML private TableView<Service> servicesTable;
@@ -22,6 +26,7 @@ public class AdminServiceController {
     @FXML private TableColumn<Service, String> colDeadlines;
     @FXML private TableColumn<Service, Integer> colPrice;
     @FXML private TableColumn<Service, Integer> colWorkerId;
+    @FXML private TableColumn<Service, String> colImage;
 
     //Текстовые поля
     @FXML private TextField idField;
@@ -30,12 +35,15 @@ public class AdminServiceController {
     @FXML private TextField deadlinesField;
     @FXML private TextField priceField;
     @FXML private TextField workerIdField;
+    @FXML private Label imageLabel;
 
     //Кнопки
     @FXML private Button clearButton;
     @FXML private Button deleteButton;
     @FXML private Button editButton;
     @FXML private Button addButton;
+    @FXML private Button exitbutton;
+    @FXML private Button chooseImageButton;
 
     //Интерфейс левой части
     @FXML private Button houseButton;
@@ -45,12 +53,16 @@ public class AdminServiceController {
     @FXML private Button activeOrdersButton;
     @FXML private Button historyOrdersButton;
     @FXML private Button storageButton;
-    @FXML private Button exitbutton;
     @FXML private Label admins_name;
+    @FXML private ImageView brandingImageView;
 
     //Переменные
     private Stage primaryStage;
     private String adminName;
+    private String selectedImagePath;
+
+    //Папка с фото
+    private static final String IMAGES_DIR = "images/";
 
     //Устанавливает главное окно
     public void setPrimaryStage(Stage stage) { this.primaryStage = stage; }
@@ -63,13 +75,19 @@ public class AdminServiceController {
 
     //Предзагрузка
     @FXML
-    public void initialize() {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        File brandingFile = new File("images/User.png");
+        Image brandingImage = new Image(brandingFile.toURI().toString());
+        brandingImageView.setImage(brandingImage);
+
         colId.setCellValueFactory(new PropertyValueFactory<>("service_id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("service_name"));
         colStorageId.setCellValueFactory(new PropertyValueFactory<>("storage_id"));
         colDeadlines.setCellValueFactory(new PropertyValueFactory<>("service_deadlines"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("service_price"));
         colWorkerId.setCellValueFactory(new PropertyValueFactory<>("worker_id"));
+        colImage.setCellValueFactory(new PropertyValueFactory<>("Image"));
 
         loadServices();
 
@@ -91,13 +109,46 @@ public class AdminServiceController {
         deadlinesField.setText(s.getService_deadlines());
         priceField.setText(String.valueOf(s.getService_price()));
         workerIdField.setText(String.valueOf(s.getWorker_id()));
+
+        if (s.getImage() != null && !s.getImage().isEmpty()) {
+            imageLabel.setText(s.getImage());
+            selectedImagePath = s.getImage();
+        } else {
+            imageLabel.setText("Файл не выбран");
+            selectedImagePath = null;
+        }
     }
 
     //Метод очистки
     private void clearFields() {
-        idField.clear(); nameField.clear(); storageIdField.clear();
-        deadlinesField.clear(); priceField.clear(); workerIdField.clear();
+        idField.clear();
+        nameField.clear();
+        storageIdField.clear();
+        deadlinesField.clear();
+        priceField.clear();
+        workerIdField.clear();
+        imageLabel.setText("Файл не выбран");
+        selectedImagePath = null;
         servicesTable.getSelectionModel().clearSelection();
+    }
+
+    //Выбор файла
+    @FXML
+    private void chooseImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Выберите фото");
+        fileChooser.setInitialDirectory(new File(IMAGES_DIR));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Изображения", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+
+        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+        if (selectedFile != null) {
+
+            //Сохранение относительного пути
+            String relativePath = "images/" + selectedFile.getName();
+            selectedImagePath = relativePath;
+            imageLabel.setText(selectedFile.getName());
+            showAlert("Успех", "Фото выбрано: " + selectedFile.getName());
+        }
     }
 
     //Кнопка "Очистить"
@@ -135,11 +186,16 @@ public class AdminServiceController {
             showAlert("Ошибка", "Выберите услугу");
             return;
         }
+
         selected.setService_name(nameField.getText());
         selected.setStorage_id(Integer.parseInt(storageIdField.getText()));
         selected.setService_deadlines(deadlinesField.getText());
         selected.setService_price(Integer.parseInt(priceField.getText()));
         selected.setWorker_id(Integer.parseInt(workerIdField.getText()));
+
+        if (selectedImagePath != null) {
+            selected.setImage(selectedImagePath);
+        }
 
         if (Service.update(selected)) {
             loadServices();
@@ -157,12 +213,17 @@ public class AdminServiceController {
             showAlert("Ошибка", "Введите название услуги");
             return;
         }
+
         Service newService = new Service();
         newService.setService_name(nameField.getText());
         newService.setStorage_id(Integer.parseInt(storageIdField.getText()));
         newService.setService_deadlines(deadlinesField.getText());
         newService.setService_price(Integer.parseInt(priceField.getText()));
         newService.setWorker_id(Integer.parseInt(workerIdField.getText()));
+
+        if (selectedImagePath != null) {
+            newService.setImage(selectedImagePath);
+        }
 
         if (Service.add(newService)) {
             loadServices();
@@ -176,19 +237,19 @@ public class AdminServiceController {
     //Метод показа уведомления
     private void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title); alert.setHeaderText(null); alert.setContentText(msg);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
         alert.showAndWait();
     }
 
     //Методы реализации смены Scene по нажатию кнопки
-    @FXML private void handleHouseButton() { SceneNavigator.goToHome(primaryStage); }
-    @FXML private void handleClientsButton() { SceneNavigator.goToClients(primaryStage); }
-    @FXML private void handleWorkersButton() { SceneNavigator.goToWorkers(primaryStage); }
+    @FXML private void handleHouseButton() {SceneNavigator.goToHome(primaryStage);}
+    @FXML private void handleClientsButton() {SceneNavigator.goToClients(primaryStage);}
+    @FXML private void handleWorkersButton() {SceneNavigator.goToWorkers(primaryStage);}
     @FXML private void handleServicesButton() {}
-    @FXML private void handleActiveOrdersButton() { SceneNavigator.goToActiveOrders(primaryStage); }
-    @FXML private void handleHistoryOrdersButton() { SceneNavigator.goToHistoryOrders(primaryStage); }
-    @FXML private void handleStorageButton() { SceneNavigator.goToStorage(primaryStage); }
-    @FXML public void actionExitButton(ActionEvent event) {
-        SceneNavigator.goToLogin(primaryStage);
-    }
+    @FXML private void handleActiveOrdersButton() {SceneNavigator.goToActiveOrders(primaryStage);}
+    @FXML private void handleHistoryOrdersButton() {SceneNavigator.goToHistoryOrders(primaryStage);}
+    @FXML private void handleStorageButton() {SceneNavigator.goToStorage(primaryStage);}
+    @FXML public void actionExitButton(ActionEvent event) {SceneNavigator.goToLogin(primaryStage);}
 }
