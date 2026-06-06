@@ -72,7 +72,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="61817f49-5a64-4287-b871-c2d0a6bd8c3b">
-      <console name="autoserviceApp" type="STANDARD" schema="main" session="Main">select * from &quot;Service&quot;</console>
+      <console name="autoserviceApp" type="STANDARD" schema="main" session="Main"><![CDATA[select * from "Service"]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -80,12 +80,12 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Client" />
-      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="consoles/autoserviceApp" />
-      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Orders" />
-      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Admin" />
       <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Storage" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Admin" />
       <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Service" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Client" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Orders" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="consoles/autoserviceApp" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabasePrerequisiteManager">
