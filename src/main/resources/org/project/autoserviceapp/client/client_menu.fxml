@@ -69,7 +69,7 @@
                      <children>
                         <AnchorPane fx:id="MyAccountForm" prefHeight="558.0" prefWidth="802.0">
                            <children>
-                              <AnchorPane layoutX="11.0" layoutY="10.0" prefHeight="529.0" prefWidth="776.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0); -fx-background-color: #fff;">
+                              <AnchorPane layoutX="11.0" layoutY="10.0" prefHeight="536.0" prefWidth="778.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0); -fx-background-color: #fff;">
                                  <children>
                                     <Label layoutX="233.0" layoutY="20.0" text="Редактировать профиль">
                                        <font>
@@ -96,15 +96,15 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="prof_name_textarea" layoutX="240.0" layoutY="124.0" prefHeight="35.0" prefWidth="300.0">
+                                    <TextField fx:id="prof_name_textarea" layoutX="240.0" layoutY="124.0" prefHeight="35.0" prefWidth="300.0" style="-fx-border-radius: 8px; -fx-background-radius: 8px; -fx-border-color: #dee2e6;">
                                        <font>
                                           <Font size="16.0" />
                                        </font></TextField>
-                                    <TextField fx:id="prof_family_textarea" layoutX="240.0" layoutY="192.0" prefHeight="35.0" prefWidth="300.0">
+                                    <TextField fx:id="prof_family_textarea" layoutX="240.0" layoutY="192.0" prefHeight="35.0" prefWidth="300.0" style="-fx-border-radius: 8px; -fx-background-radius: 8px; -fx-border-color: #dee2e6;">
                                        <font>
                                           <Font size="16.0" />
                                        </font></TextField>
-                                    <TextField fx:id="prof_email_textarea" layoutX="240.0" layoutY="259.0" prefHeight="35.0" prefWidth="300.0">
+                                    <TextField fx:id="prof_email_textarea" layoutX="240.0" layoutY="259.0" prefHeight="35.0" prefWidth="300.0" style="-fx-border-radius: 8px; -fx-background-radius: 8px; -fx-border-color: #dee2e6;">
                                        <font>
                                           <Font size="16.0" />
                                        </font></TextField>
@@ -122,7 +122,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <PasswordField fx:id="prof_password_field" layoutX="241.0" layoutY="327.0" prefHeight="35.0" prefWidth="300.0">
+                                    <PasswordField fx:id="prof_password_field" layoutX="241.0" layoutY="327.0" prefHeight="35.0" prefWidth="300.0" style="-fx-border-radius: 8px; -fx-background-radius: 8px; -fx-border-color: #dee2e6;">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -132,7 +132,7 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Label>
-                                    <PasswordField fx:id="prof_confirmPassword_field" layoutX="239.0" layoutY="397.0" prefHeight="35.0" prefWidth="300.0">
+                                    <PasswordField fx:id="prof_confirmPassword_field" layoutX="239.0" layoutY="397.0" prefHeight="35.0" prefWidth="300.0" style="-fx-border-radius: 8px; -fx-background-radius: 8px; -fx-border-color: #dee2e6;">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -145,7 +145,7 @@
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="22.0" prefHeight="500.0" prefWidth="450.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0); -fx-background-color: #fff;" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="322.0" AnchorPane.topAnchor="29.0">
                                  <children>
-                                    <ScrollPane fx:id="orderScrollPane" layoutX="14.0" layoutY="53.0" prefHeight="447.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
+                                    <ScrollPane fx:id="orderScrollPane" layoutX="14.0" layoutY="53.0" prefHeight="447.0" prefWidth="450.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
                                        <content>
                                           <GridPane fx:id="orderGridPane" prefHeight="20.0" prefWidth="63.0">
                                              <columnConstraints>
@@ -174,12 +174,12 @@
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <ScrollPane fx:id="selectedServicesScrollPane" layoutX="8.0" layoutY="68.0" prefHeight="300.0" prefWidth="270.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0">
+                                    <ScrollPane fx:id="selectedServicesScrollPane" layoutX="5.0" layoutY="68.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="293.0" />
                                        </content>
                                     </ScrollPane>
-                                    <Label fx:id="totalServicesLabel" layoutX="148.0" layoutY="373.0" text="sum">
+                                    <Label fx:id="totalServicesLabel" layoutX="148.0" layoutY="373.0">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
@@ -189,13 +189,13 @@
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="totalPriceLabel" layoutX="84.0" layoutY="403.0" text="руб">
+                                    <Label fx:id="totalPriceLabel" layoutX="84.0" layoutY="403.0">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="confirmOrderBtn" layoutX="32.0" layoutY="449.0" mnemonicParsing="false" text="Подтвердить" />
-                                    <Button fx:id="clearOrderBtn" layoutX="142.0" layoutY="449.0" mnemonicParsing="false" text="Очистить" />
+                                    <Button fx:id="confirmOrderBtn" layoutX="32.0" layoutY="449.0" mnemonicParsing="false" style="-fx-background-radius: 8px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1); -fx-background-color: #f7931e;" text="Подтвердить" textFill="WHITE" />
+                                    <Button fx:id="clearOrderBtn" layoutX="142.0" layoutY="449.0" mnemonicParsing="false" style="-fx-background-radius: 8px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1); -fx-background-color: #f7931e;" text="Очистить" textFill="WHITE" />
                                  </children></AnchorPane>
                            </children></AnchorPane>
                      </children></AnchorPane>
