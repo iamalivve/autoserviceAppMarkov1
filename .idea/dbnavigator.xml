@@ -77,8 +77,8 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="745be50f-e3b5-4c64-b91e-4949b64ab173">
-      <console name="AutoService" type="STANDARD" schema="main" session="Main" />
+    <connection id="61817f49-5a64-4287-b871-c2d0a6bd8c3b">
+      <console name="autoserviceApp" type="STANDARD" schema="main" session="Main"><![CDATA[select * from "Service"]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -86,26 +86,28 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="745be50f-e3b5-4c64-b91e-4949b64ab173" object-ref="schemas/main/tables/Storage" />
-      <object connection-id="745be50f-e3b5-4c64-b91e-4949b64ab173" object-ref="schemas/main/tables/Worker" />
-      <object connection-id="745be50f-e3b5-4c64-b91e-4949b64ab173" object-ref="schemas/main/tables/Service" />
-      <object connection-id="745be50f-e3b5-4c64-b91e-4949b64ab173" object-ref="schemas/main/tables/Admin" />
-      <object connection-id="745be50f-e3b5-4c64-b91e-4949b64ab173" object-ref="schemas/main/tables/Client" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Storage" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Admin" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Service" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Client" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="schemas/main/tables/Orders" />
+      <object connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" object-ref="consoles/autoserviceApp" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabasePrerequisiteManager">
     <prerequisites />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="745be50f-e3b5-4c64-b91e-4949b64ab173" />
+    <connection id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="745be50f-e3b5-4c64-b91e-4949b64ab173" dataset="main.Orders" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="745be50f-e3b5-4c64-b91e-4949b64ab173" dataset="main.Admin" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="745be50f-e3b5-4c64-b91e-4949b64ab173" dataset="main.Service" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="745be50f-e3b5-4c64-b91e-4949b64ab173" dataset="main.Storage" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="745be50f-e3b5-4c64-b91e-4949b64ab173" dataset="main.Client" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="745be50f-e3b5-4c64-b91e-4949b64ab173" dataset="main.Worker" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Orders" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Admin" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Service" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.sqlite_sequence" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Storage" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Client" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" dataset="main.Worker" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -124,9 +126,9 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection source-id="" id="745be50f-e3b5-4c64-b91e-4949b64ab173" active="true" signed="true">
+      <connection source-id="" id="61817f49-5a64-4287-b871-c2d0a6bd8c3b" active="true" signed="true">
         <database>
-          <name value="AutoService" />
+          <name value="autoserviceApp" />
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
@@ -144,7 +146,7 @@
           <protocol value="" />
           <url-parameters />
           <files>
-            <file path="C:\Users\maksi\IdeaProjects\serviceApp\autoserviceApp.db" schema="main" />
+            <file path="C:\Users\kiril\IdeaProjects\autoserviceApp\autoserviceApp.db" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />
@@ -181,7 +183,7 @@
           <session-management value="true" />
           <ddl-file-binding value="true" />
           <database-logging value="true" />
-          <connect-automatically value="true" />
+          <connect-automatically value="false" />
           <restore-workspace value="true" />
           <restore-workspace-deep value="false" />
           <environment-type value="default" />
@@ -392,13 +394,19 @@
           <content-type name="DTD" enabled="true" />
           <content-type name="HTML" enabled="true" />
           <content-type name="XHTML" enabled="true" />
+          <content-type name="CSS" enabled="true" />
           <content-type name="Java" enabled="true" />
           <content-type name="SQL" enabled="true" />
           <content-type name="PL/SQL" enabled="true" />
           <content-type name="JPA QL" enabled="true" />
+          <content-type name="JavaScript" enabled="true" />
           <content-type name="JSON" enabled="true" />
           <content-type name="JSON5" enabled="true" />
+          <content-type name="JSP" enabled="true" />
+          <content-type name="JSPx" enabled="true" />
           <content-type name="Groovy" enabled="true" />
+          <content-type name="FTL" enabled="true" />
+          <content-type name="VTL" enabled="true" />
           <content-type name="YAML" enabled="true" />
           <content-type name="Manifest" enabled="true" />
         </content-types>

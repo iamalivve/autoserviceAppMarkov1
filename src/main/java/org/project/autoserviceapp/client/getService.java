@@ -10,6 +10,7 @@ public class getService {
     private Integer workerId;
     private String image;
 
+    // Конструктор для создания объекта услуги
     public getService(Integer id, String serviceName, Integer storageId, String serviceDeadlines, Double servicePrice, String image) {
         this.id = id;
         this.serviceName = serviceName;
@@ -19,6 +20,7 @@ public class getService {
         this.image = image;
     }
 
+    // Геттеры
     public Integer getId(){
         return id;
     }
