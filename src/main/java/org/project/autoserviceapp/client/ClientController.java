@@ -100,6 +100,7 @@ public class ClientController implements Initializable {
     private String currentLogin;
     private String currentPassword;
     private String clientName;
+    private String clientUsername;
     private String clientFamily;
     private String currentStoredPassword;
     private int clientId;
@@ -130,7 +131,7 @@ public class ClientController implements Initializable {
             DatabaseConnection connectNow = new DatabaseConnection();
             connectDB = connectNow.getConnection();
 
-            String query = "SELECT client_id, client_name, client_family, client_email, client_password FROM Client WHERE client_login = ?";
+            String query = "SELECT client_id, client_name, client_family, client_login, client_email, client_password FROM Client WHERE client_login = ?";
             preparedStatement = connectDB.prepareStatement(query);
             preparedStatement.setString(1, currentLogin);
             queryResult = preparedStatement.executeQuery();
@@ -138,13 +139,14 @@ public class ClientController implements Initializable {
             if (queryResult.next()) {
                 clientId = queryResult.getInt("client_id");
                 clientName = queryResult.getString("client_name");
+                clientUsername = queryResult.getString("client_login");
                 clientFamily = queryResult.getString("client_family");
                 String email = queryResult.getString("client_email");
                 currentStoredPassword = queryResult.getString("client_password");
 
                 // Обновляем интерфейс если данные инициализированы
                 if (usernameMyAccount != null) {
-                    usernameMyAccount.setText(clientName);
+                    usernameMyAccount.setText(clientUsername);
                 }
 
                 if (CurrentDateMyAccount != null) {
@@ -279,7 +281,7 @@ public class ClientController implements Initializable {
                 clientFamily = newFamily;
 
                 if (usernameMyAccount != null) {
-                    usernameMyAccount.setText(clientName);
+                    usernameMyAccount.setText(clientUsername);
                 }
 
                 if (profileSuccessMessage != null) {

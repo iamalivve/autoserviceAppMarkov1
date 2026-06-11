@@ -13,7 +13,7 @@
    <children>
       <ImageView fx:id="brandingImageView" fitHeight="400.0" fitWidth="236.0" layoutX="386.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../images/loginMenu.png" />
+            <Image url="@../../../../images/loginMenu.png" />
          </image>
       </ImageView>
       <Button fx:id="BackAdminButton" mnemonicParsing="false" onAction="#actionBackAdmin" prefHeight="28.0" prefWidth="33.0" style="-fx-background-color: none;" text="◀" textFill="#f7931e">

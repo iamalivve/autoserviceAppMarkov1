@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.project.autoserviceapp.login.RegisterController">
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="592.0" prefWidth="341.0">
@@ -99,7 +98,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="confirmPasswordLabel" alignment="CENTER" layoutX="77.0" layoutY="559.0" prefHeight="19.0" prefWidth="196.0" textFill="#e42d2d">
+            <Label fx:id="confirmPasswordLabel" alignment="CENTER" layoutX="23.0" layoutY="559.0" prefHeight="19.0" prefWidth="302.0" textFill="#e42d2d">
                <font>
                   <Font size="13.0" />
                </font>
@@ -110,7 +109,7 @@
          <children>
             <ImageView fx:id="brandingImageView" fitHeight="592.0" fitWidth="326.0" layoutX="-3.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0">
                <image>
-                  <Image url="@../../../../../../../images/loginMenu.png" />
+                  <Image url="@../../../../images/loginMenu.png" />
                </image>
             </ImageView>
          </children>

@@ -11,10 +11,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.project.autoserviceapp.DatabaseConnection;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -52,8 +54,8 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        File brandingFile = new File("images/loginMenu.png");
-        Image brandingImage = new Image(brandingFile.toURI().toString());
+        InputStream is = getClass().getResourceAsStream("/images/loginMenu.png");
+        Image brandingImage = new Image(is);
         brandingImageView.setImage(brandingImage);
     }
 
@@ -83,7 +85,9 @@ public class RegisterController implements Initializable {
             confirmPasswordLabel.setText("Пароли не совпадают");
         } else if (!emailField.getText().contains("@") || !emailField.getText().contains(".")) {
                 confirmPasswordLabel.setText("Введите корректный email");
-        } else {
+        } else if (passwordField.getText().length() < 4) {
+            confirmPasswordLabel.setText("Пароль должен содержать не менее 4 символов");
+        }else {
             registerUser();
         }
     }

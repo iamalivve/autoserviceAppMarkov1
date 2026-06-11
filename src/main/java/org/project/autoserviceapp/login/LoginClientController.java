@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import org.project.autoserviceapp.DatabaseConnection;
 import org.project.autoserviceapp.client.ClientController;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -36,8 +37,8 @@ public class LoginClientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        File brandingFile = new File("images/loginMenu.png");
-        Image brandingImage = new Image(brandingFile.toURI().toString());
+        InputStream is = getClass().getResourceAsStream("/images/loginMenu.png");
+        Image brandingImage = new Image(is);
         brandingImageView.setImage(brandingImage);
     }
 

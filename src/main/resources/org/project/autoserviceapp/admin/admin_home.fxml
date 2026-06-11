@@ -141,7 +141,7 @@
             </VBox>
             <ImageView fx:id="brandingImageView" fitHeight="130.0" fitWidth="130.0" layoutX="63.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../images/User.png" />
+                  <Image url="@../../../../images/User.png" />
                </image>
             </ImageView>
             <Line endX="125.0" layoutX="127.0" layoutY="223.0" startX="-127.0" stroke="#595959" strokeWidth="2.0" />

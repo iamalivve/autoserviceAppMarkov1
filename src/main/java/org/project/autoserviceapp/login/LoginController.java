@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,8 +23,8 @@ public class LoginController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        File brandingFile = new File("images/logo.png");
-        Image brandingImage = new Image(brandingFile.toURI().toString());
+        InputStream is = getClass().getResourceAsStream("/images/logo.png");
+        Image brandingImage = new Image(is);
         ImageViewLogin.setImage(brandingImage);
     }
 
